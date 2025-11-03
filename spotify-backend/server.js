@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware - Allow multiple frontend URLs
 const allowedOrigins = [
+    'https://lfdiego.xyz',
     'http://localhost:8080',
     'http://localhost:5500',
     'http://localhost:3000',  // Allow backend to call itself
