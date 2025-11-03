@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Luis Fernando Diego - Web Developer and Software Engineer Portfolio">
+    <meta name="author" content="Luis Fernando Diego">
+    <title>Diego | lfdiego.xyz</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Roboto', Arial, sans-serif;
+            background-color: #121212;
+            color: #EAEAEA;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .main-container {
+            background-color: #252525;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* SECTION 1: Above the Fold */
+        .section-one {
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .asymmetric-grid {
+            display: grid;
+            grid-template-columns: 49% 49%;
+            grid-template-rows: auto 30px 1fr 1fr;
+            gap: 2%;
+            max-width: 1200px;
+            margin: 100px auto 0 auto;
+            height: auto;
+            min-height: 600px;
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 1200px;
+            background-color: #252525;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00FFFF;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #EAEAEA;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00FFFF;
+        }
+
+        /* Hero Section */
+        .hero-container {
+            grid-column: 1 / -1;
+            grid-row: 1;
+            background-color: #252525;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 50px 50px 60px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            min-height: 350px;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: visible;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #00FFFF, #EAEAEA);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.3;
+            max-width: 100%;
+            word-wrap: break-word;
+            padding-bottom: 5px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #EAEAEA;
+            margin-bottom: 25px;
+            opacity: 0.9;
+            font-weight: 500;
+            max-width: 100%;
+        }
+
+        .hero-description {
+            font-size: 1.05rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            line-height: 1.6;
+            max-width: 100%;
+            color: #EAEAEA;
+        }
+
+        .cta-button {
+            background-color: #00FFFF;
+            color: #121212;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+            margin-top: 0;
+            margin-bottom: 0;
+            text-decoration: none;
+            display: inline-block;
+            max-width: fit-content;
+            flex-shrink: 0;
+        }
+
+        .cta-button:hover {
+            background-color: #00E6E6;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.3);
+        }
+
+        /* "Über mich" Box - Hoher linker Block (2 Zeilen) */
+        .about-container {
+            grid-column: 1;
+            grid-row: 3 / span 2;
+            background-color: #252525;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            transition: border 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .about-container:hover {
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        /* "Skills & Technologien" Box - Oberer rechter Block */
+        .skills-container {
+            grid-column: 2;
+            grid-row: 3;
+            background-color: #252525;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: border 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .skills-container:hover {
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        /* "Spotify Now Playing" Box - Unterer rechter Block */
+        .spotify-container {
+            grid-column: 2;
+            grid-row: 4;
+            background-color: #252525;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            transition: border 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .spotify-container:hover {
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        /* Entferne die alte right-side Struktur */
+        .right-side {
+            display: none;
+        }
+
+        .container-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #00FFFF;
+            margin-bottom: 15px;
+        }
+
+        .container-text {
+            color: #EAEAEA;
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .skills-container .container-title {
+            margin-bottom: 8px;
+        }
+
+        .skills-container .container-text {
+            margin-bottom: 5px;
+        }
+
+        .skills-carousel-container {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skills-carousel-container::before,
+        .skills-carousel-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 40px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .skills-carousel-container::before {
+            left: 0;
+            background: linear-gradient(to right, #252525, transparent);
+        }
+
+        .skills-carousel-container::after {
+            right: 0;
+            background: linear-gradient(to left, #252525, transparent);
+        }
+
+        .skills-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            animation-duration: 25s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            width: max-content;
+        }
+
+        .skills-row:hover {
+            animation-play-state: paused;
+        }
+
+        .skills-row-1 {
+            animation-name: scrollLeft;
+        }
+
+        .skills-row-2 {
+            animation-name: scrollRight;
+        }
+
+        @keyframes scrollLeft {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-33.333%); }
+        }
+
+        @keyframes scrollRight {
+            0% { transform: translateX(-33.333%); }
+            100% { transform: translateX(0%); }
+        }
+
+        .skill-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 6px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: fit-content;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            height: 32px;
+            box-sizing: border-box;
+        }
+
+        .skill-card:hover {
+            border-color: rgba(0, 255, 255, 0.4);
+            background-color: rgba(0, 255, 255, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 255, 255, 0.2);
+        }
+
+        .skill-icon {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .skill-name {
+            color: #EAEAEA;
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* SECTION 2: Below the Fold - Single Project Container */
+        .section-two {
+            padding: 80px 20px;
+            background: linear-gradient(180deg, #121212 0%, #0a0a0a 100%);
+        }
+
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #252525;
+            border-radius: 20px;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #00FFFF;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #00FFFF 0%, #FFFFFF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        /* Responsive Grid für mittlere Bildschirme */
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
+
+        .project-card {
+            background-color: #3a3a3a;
+            border-radius: 20px;
+            padding: 25px;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid #4a4a4a;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 255, 255, 0.2);
+            border: 2px solid #00FFFF;
+            background-color: #404040;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #00FFFF;
+            margin-bottom: 15px;
+        }
+
+        .project-description {
+            color: #EAEAEA;
+            opacity: 0.8;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Tablet Responsiveness */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .asymmetric-grid {
+                gap: 25px;
+                padding: 0 15px;
+            }
+
+            .nav-container,
+            .hero-container,
+            .about-container,
+            .skills-container,
+            .music-container {
+                padding: 25px;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .section-one {
+                padding: 20px 15px;
+            }
+
+            .asymmetric-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto auto;
+                height: auto;
+                gap: 15px;
+                min-height: auto;
+                margin-top: 80px;
+            }
+
+            .nav-container {
+                top: 15px;
+                width: calc(100% - 30px);
+                padding: 15px 20px;
+            }
+
+            .hero-container {
+                grid-column: 1;
+                grid-row: 1;
+                padding: 40px 35px 50px 35px;
+                text-align: center;
+                min-height: 300px;
+                align-items: center;
+                overflow: visible;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+                margin-bottom: 12px;
+                line-height: 1.3;
+                padding-bottom: 3px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 20px;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+                margin-bottom: 30px;
+            }
+
+            .cta-button {
+                padding: 14px 28px;
+                font-size: 1rem;
+                align-self: center;
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+
+            .about-container {
+                grid-column: 1;
+                grid-row: 2;
+                padding: 25px;
+            }
+
+            .skills-container {
+                grid-column: 1;
+                grid-row: 3;
+                padding: 25px;
+            }
+
+            .spotify-container {
+                grid-column: 1;
+                grid-row: 4;
+                padding: 25px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+
+            .right-side {
+                display: none;
+            }
+
+            .skills-carousel-container {
+                height: 35px;
+                gap: 2px;
+            }
+
+            .skills-row {
+                height: 15px;
+            }
+
+            .skill-card {
+                min-width: 50px;
+                padding: 1px 4px;
+                height: 14px;
+                gap: 3px;
+            }
+
+            .skill-icon {
+                width: 10px;
+                height: 10px;
+            }
+
+            .skill-name {
+                font-size: 0.65rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .main-container {
+                padding: 20px;
+                margin: 15px 0;
+            }
+
+            /* Section 2 Mobile */
+            .section-two {
+                padding: 60px 15px;
+            }
+
+            .projects-container {
+                padding: 30px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .project-card {
+                padding: 20px;
+                aspect-ratio: auto;
+                min-height: 180px;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Additional Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stagger animation delays */
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+        .project-card:nth-child(5) { animation-delay: 0.5s; }
+        .project-card:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Spotify Widget Styles */
+        #spotify-widget-container {
+            margin-top: 15px;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .spotify-state {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* Loading Animation */
+        .spotify-loading-animation {
+            margin-bottom: 15px;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(0, 255, 255, 0.1);
+            border-top: 3px solid #00FFFF;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Connect Button */
+        .spotify-connect-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .spotify-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .spotify-status-text {
+            color: #EAEAEA;
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .spotify-subtitle {
+            color: #EAEAEA;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin: 5px 0 0 0;
+        }
+
+        .spotify-connect-btn {
+            background-color: #1DB954;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .spotify-connect-btn:hover {
+            background-color: #1ed760;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(29, 185, 84, 0.3);
+        }
+
+        /* Now Playing Styles - Styled like the reference image */
+        .spotify-track-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            max-width: 100%;
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.3), rgba(75, 0, 130, 0.2));
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .spotify-album-art {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .spotify-album-art img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .spotify-play-indicator {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 3px;
+            padding: 3px;
+        }
+
+        .play-bars {
+            display: flex;
+            align-items: end;
+            gap: 1px;
+            height: 10px;
+        }
+
+        .play-bars .bar {
+            width: 2px;
+            background-color: #1DB954;
+            border-radius: 1px;
+            animation: playBars 1.5s ease-in-out infinite;
+        }
+
+        .play-bars .bar:nth-child(1) { animation-delay: 0s; }
+        .play-bars .bar:nth-child(2) { animation-delay: 0.3s; }
+        .play-bars .bar:nth-child(3) { animation-delay: 0.6s; }
+        .play-bars .bar:nth-child(4) { animation-delay: 0.9s; }
+
+        @keyframes playBars {
+            0%, 100% { height: 3px; }
+            50% { height: 10px; }
+        }
+
+        .spotify-track-info {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding-top: 2px;
+        }
+
+        .spotify-track-title {
+            color: #FFFFFF;
+            font-size: 0.95rem;
+            font-weight: 600;
+            line-height: 1.2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-bottom: 2px;
+        }
+
+        .spotify-track-artist {
+            color: #EAEAEA;
+            font-size: 0.8rem;
+            opacity: 0.9;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-bottom: 8px;
+        }
+
+        .spotify-progress-container {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .spotify-progress-bar {
+            width: 100%;
+            height: 3px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .spotify-progress-fill {
+            height: 100%;
+            background-color: #FFFFFF;
+            border-radius: 2px;
+            transition: width 1s linear;
+            width: 0%;
+        }
+
+        .spotify-time-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: #EAEAEA;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
+        /* Mobile responsiveness for Spotify widget */
+        @media (max-width: 768px) {
+            .spotify-track-container {
+                gap: 12px;
+                padding: 12px;
+            }
+
+            .spotify-album-art {
+                width: 65px;
+                height: 65px;
+            }
+
+            .spotify-track-title {
+                font-size: 0.85rem;
+            }
+
+            .spotify-track-artist {
+                font-size: 0.75rem;
+            }
+
+            .spotify-time-info {
+                font-size: 0.65rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SECTION 1: Above the Fold - Asymmetric Grid -->
+    <section class="section-one" id="top">
+        <div class="asymmetric-grid">
+            <!-- Navigation -->
+            <nav class="nav-container">
+                <div class="logo">lfdiego.xyz</div>
+                <ul class="nav-links">
+                    <li><a href="#top">Home</a></li>
+                    <li><a href="#about">Über mich</a></li>
+                    <li><a href="#projects">Projekte</a></li>
+                    <li><a href="https://github.com/DiegoLikesPizza" target="_blank">GitHub</a></li>
+                </ul>
+            </nav>
+
+            <!-- Hero Section (Full Width) -->
+            <div class="hero-container">
+                <h1 class="hero-title">Diego</h1>
+                <p class="hero-subtitle">Full-Stack Developer & Software Engineer</p>
+                <p class="hero-description">
+                    Willkommen auf meiner Portfolio-Seite! Ich entwickle moderne Webanwendungen
+                    und Software-Lösungen mit Leidenschaft für sauberen Code und innovative Technologien.
+                </p>
+                <button class="cta-button">Projekte ansehen</button>
+            </div>
+
+            <!-- "Über mich" Box - Hoher linker Block (2 Zeilen) -->
+            <div class="about-container" id="about">
+                <h2 class="container-title">Über mich</h2>
+                <p class="container-text">
+                    Ich bin ein leidenschaftlicher Entwickler mit Fokus auf moderne Web-Technologien.
+                    Mit mehrjähriger Erfahrung in Frontend- und Backend-Entwicklung erstelle ich
+                    benutzerfreundliche und skalierbare Anwendungen.
+                </p>
+                <br>
+                <p class="container-text">
+                    Meine Leidenschaft liegt in der Entwicklung von benutzerfreundlichen Interfaces
+                    und robusten Backend-Systemen. Ich arbeite gerne mit den neuesten Technologien
+                    und bin immer auf der Suche nach innovativen Lösungsansätzen.
+                </p>
+                <br>
+                <p class="container-text">
+                    In meiner Freizeit beschäftige ich mich mit neuen Frameworks, Open-Source-Projekten
+                    und der kontinuierlichen Weiterbildung in der sich schnell entwickelnden Tech-Welt.
+                </p>
+            </div>
+
+            <!-- "Skills & Technologien" Box - Oberer rechter Block -->
+            <div class="skills-container">
+                <h2 class="container-title">Skills & Technologien</h2>
+                <p class="container-text">Meine Expertise umfasst:</p>
+                <div class="skills-carousel-container">
+                    <!-- Erste Reihe - scrollt nach links -->
+                    <div class="skills-row skills-row-1">
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" class="skill-icon">
+                            <span class="skill-name">HTML</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" class="skill-icon">
+                            <span class="skill-name">CSS</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" class="skill-icon">
+                            <span class="skill-name">Tailwind CSS</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="skill-icon">
+                            <span class="skill-name">JavaScript</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="skill-icon">
+                            <span class="skill-name">React</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="skill-icon">
+                            <span class="skill-name">Node.js</span>
+                        </div>
+                        <!-- Erste Duplikate -->
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" class="skill-icon">
+                            <span class="skill-name">HTML</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" class="skill-icon">
+                            <span class="skill-name">CSS</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" class="skill-icon">
+                            <span class="skill-name">Tailwind CSS</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="skill-icon">
+                            <span class="skill-name">JavaScript</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="skill-icon">
+                            <span class="skill-name">React</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="skill-icon">
+                            <span class="skill-name">Node.js</span>
+                        </div>
+                        <!-- Zweite Duplikate für besseren Flow -->
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" class="skill-icon">
+                            <span class="skill-name">HTML</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" class="skill-icon">
+                            <span class="skill-name">CSS</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" class="skill-icon">
+                            <span class="skill-name">Tailwind CSS</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="skill-icon">
+                            <span class="skill-name">JavaScript</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="skill-icon">
+                            <span class="skill-name">React</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="skill-icon">
+                            <span class="skill-name">Node.js</span>
+                        </div>
+                    </div>
+
+                    <!-- Zweite Reihe - scrollt nach rechts -->
+                    <div class="skills-row skills-row-2">
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" class="skill-icon">
+                            <span class="skill-name">VS Code</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://avatars.githubusercontent.com/u/126759922?s=200&v=4" alt="Cursor" class="skill-icon">
+                            <span class="skill-name">Cursor</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="skill-icon">
+                            <span class="skill-name">Java</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" class="skill-icon">
+                            <span class="skill-name">C</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="skill-icon">
+                            <span class="skill-name">Git</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" alt="IntelliJ IDEA" class="skill-icon">
+                            <span class="skill-name">IntelliJ IDEA</span>
+                        </div>
+                        <!-- Erste Duplikate -->
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" class="skill-icon">
+                            <span class="skill-name">VS Code</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://avatars.githubusercontent.com/u/126759922?s=200&v=4" alt="Cursor" class="skill-icon">
+                            <span class="skill-name">Cursor</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="skill-icon">
+                            <span class="skill-name">Java</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" class="skill-icon">
+                            <span class="skill-name">C</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="skill-icon">
+                            <span class="skill-name">Git</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" alt="IntelliJ IDEA" class="skill-icon">
+                            <span class="skill-name">IntelliJ IDEA</span>
+                        </div>
+                        <!-- Zweite Duplikate für besseren Flow -->
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" class="skill-icon">
+                            <span class="skill-name">VS Code</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://avatars.githubusercontent.com/u/126759922?s=200&v=4" alt="Cursor" class="skill-icon">
+                            <span class="skill-name">Cursor</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="skill-icon">
+                            <span class="skill-name">Java</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" class="skill-icon">
+                            <span class="skill-name">C</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="skill-icon">
+                            <span class="skill-name">Git</span>
+                        </div>
+                        <div class="skill-card">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" alt="IntelliJ IDEA" class="skill-icon">
+                            <span class="skill-name">IntelliJ IDEA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- "Spotify Now Playing" Box - Unterer rechter Block -->
+            <div class="spotify-container">
+                <h2 class="container-title">Listening to Spotify</h2>
+
+                <!-- Spotify Widget Container -->
+                <div id="spotify-widget-container">
+                    <!-- Loading State -->
+                    <div id="spotify-loading" class="spotify-state">
+                        <div class="spotify-loading-animation">
+                            <div class="loading-spinner"></div>
+                        </div>
+                        <p class="spotify-status-text">Connecting to Spotify...</p>
+                    </div>
+
+                    <!-- Not Connected State -->
+                    <div id="spotify-not-connected" class="spotify-state" style="display: none;">
+                        <div class="spotify-connect-container">
+                            <div class="spotify-icon">🎵</div>
+                            <p class="spotify-status-text">Diego's Spotify not connected</p>
+                            <p class="spotify-subtitle">Check back later for music updates</p>
+                        </div>
+                    </div>
+
+                    <!-- Not Playing State -->
+                    <div id="spotify-not-playing" class="spotify-state" style="display: none;">
+                        <div class="spotify-idle-container">
+                            <div class="spotify-icon">⏸️</div>
+                            <p class="spotify-status-text">Diego isn't listening to anything</p>
+                            <p class="spotify-subtitle">Check back later for updates</p>
+                        </div>
+                    </div>
+
+                    <!-- Now Playing State -->
+                    <div id="spotify-now-playing" class="spotify-state" style="display: none;">
+                        <div class="spotify-track-container">
+                            <div class="spotify-album-art">
+                                <img id="spotify-album-image" src="" alt="Album Art" />
+                                <div class="spotify-play-indicator">
+                                    <div class="play-bars">
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                        <div class="bar"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="spotify-track-info">
+                                <div class="spotify-track-title" id="spotify-track-name">Song Title</div>
+                                <div class="spotify-track-artist" id="spotify-track-artist">Artist Name</div>
+                                <div class="spotify-progress-container">
+                                    <div class="spotify-progress-bar">
+                                        <div class="spotify-progress-fill" id="spotify-progress-fill"></div>
+                                    </div>
+                                    <div class="spotify-time-info">
+                                        <span id="spotify-current-time">0:00</span>
+                                        <span id="spotify-total-time">0:00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: Below the Fold - Single Project Container -->
+    <section class="section-two" id="projects">
+        <div class="projects-container">
+            <h2 class="section-title">Projekte</h2>
+
+            <div class="projects-grid">
+                <!-- Project Card 1 -->
+                <div class="project-card fade-in">
+                    <h3 class="project-title">Seminararbeit</h3>
+                    <p class="project-description">
+                        Seminararbeit im Fach Physik über die Geschichte des CERN
+                    </p>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="project-card fade-in">
+                    <h3 class="project-title">DiegoAddons</h3>
+                    <p class="project-description">
+                        discontinued modification project for Minecraft
+                    </p>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="project-card fade-in">
+                    <h3 class="project-title">DiegoExtras</h3>
+                    <p class="project-description">
+                        modification project for Minecraft
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript for future functionality -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // SPOTIFY INTEGRATION
+        const BACKEND_URL = 'http://localhost:3000';
+
+        let spotifyUpdateInterval;
+        let currentTrackData = null;
+        let progressInterval;
+
+        // Spotify Widget State Management
+        function showSpotifyState(stateName) {
+            const states = ['spotify-loading', 'spotify-not-connected', 'spotify-not-playing', 'spotify-now-playing'];
+            states.forEach(state => {
+                const element = document.getElementById(state);
+                if (element) {
+                    element.style.display = state === stateName ? 'flex' : 'none';
+                }
+            });
+        }
+
+        // Format time from milliseconds to MM:SS
+        function formatTime(ms) {
+            const totalSeconds = Math.floor(ms / 1000);
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            if (!currentTrackData || !currentTrackData.is_playing) return;
+
+            const progressMs = currentTrackData.progress_ms;
+            const durationMs = currentTrackData.item.duration_ms;
+            const progressPercent = (progressMs / durationMs) * 100;
+
+            const progressFill = document.getElementById('spotify-progress-fill');
+            const currentTimeEl = document.getElementById('spotify-current-time');
+
+            if (progressFill) progressFill.style.width = `${progressPercent}%`;
+            if (currentTimeEl) currentTimeEl.textContent = formatTime(progressMs);
+        }
+
+        // Update now playing display
+        function updateNowPlaying(trackData) {
+            if (!trackData || !trackData.item) {
+                showSpotifyState('spotify-not-playing');
+                return;
+            }
+
+            currentTrackData = trackData;
+
+            // Update track info
+            const trackName = document.getElementById('spotify-track-name');
+            const trackArtist = document.getElementById('spotify-track-artist');
+            const albumImage = document.getElementById('spotify-album-image');
+            const totalTime = document.getElementById('spotify-total-time');
+
+            if (trackName) trackName.textContent = trackData.item.name;
+            if (trackArtist) trackArtist.textContent = trackData.item.artists.map(a => a.name).join(', ');
+            if (totalTime) totalTime.textContent = formatTime(trackData.item.duration_ms);
+
+            if (albumImage && trackData.item.album.images.length > 0) {
+                albumImage.src = trackData.item.album.images[0].url;
+                albumImage.alt = `${trackData.item.album.name} by ${trackData.item.artists[0].name}`;
+            }
+
+            // Show now playing state
+            showSpotifyState('spotify-now-playing');
+
+            // Update progress immediately
+            updateProgress();
+
+            // Clear existing progress interval
+            if (progressInterval) clearInterval(progressInterval);
+
+            // Start progress updates if playing
+            if (trackData.is_playing) {
+                progressInterval = setInterval(() => {
+                    if (currentTrackData && currentTrackData.is_playing) {
+                        currentTrackData.progress_ms += 1000;
+                        updateProgress();
+                    }
+                }, 1000);
+            }
+        }
+
+        // Fetch current track from backend
+        async function fetchCurrentTrack() {
+            try {
+                console.log('Fetching current track from:', `${BACKEND_URL}/api/current-track`);
+                const response = await fetch(`${BACKEND_URL}/api/current-track`);
+                console.log('Current track response:', response.status, response.ok);
+
+                if (response.ok) {
+                    const trackData = await response.json();
+                    console.log('Current track data:', trackData);
+                    updateNowPlaying(trackData);
+                } else {
+                    console.log('No current track or error response');
+                    showSpotifyState('spotify-not-playing');
+                }
+            } catch (error) {
+                console.error('Error fetching current track:', error);
+                console.error('Backend might not be running or CORS issue');
+                showSpotifyState('spotify-not-connected');
+            }
+        }
+
+        // Check authentication status
+        async function checkAuthStatus() {
+            try {
+                console.log('Checking auth status at:', `${BACKEND_URL}/api/auth-status`);
+                const response = await fetch(`${BACKEND_URL}/api/auth-status`);
+                console.log('Auth status response:', response.status, response.ok);
+
+                if (response.ok) {
+                    const status = await response.json();
+                    console.log('Auth status data:', status);
+                    return status.authenticated;
+                } else {
+                    console.error('Auth status request failed:', response.status, response.statusText);
+                }
+            } catch (error) {
+                console.error('Error checking auth status:', error);
+                console.error('This might be a CORS issue or the backend is not running');
+            }
+            return false;
+        }
+
+        // Note: This function is no longer needed for visitors
+        // Only Diego needs to authenticate once via /admin/auth/spotify
+        async function connectSpotify() {
+            // This is just for display - visitors don't need to connect
+            alert('This shows Diego\'s music. No connection needed from your side!');
+        }
+
+        // Start periodic updates
+        function startSpotifyUpdates() {
+            fetchCurrentTrack();
+            if (spotifyUpdateInterval) clearInterval(spotifyUpdateInterval);
+            spotifyUpdateInterval = setInterval(fetchCurrentTrack, 30000); // Update every 30 seconds
+        }
+
+        // Initialize Spotify widget
+        async function initSpotifyWidget() {
+            showSpotifyState('spotify-loading');
+
+            // Check if Diego's Spotify is authenticated
+            const isAuthenticated = await checkAuthStatus();
+
+            if (isAuthenticated) {
+                startSpotifyUpdates();
+            } else {
+                showSpotifyState('spotify-not-connected');
+            }
+
+            // Note: No connect button needed for visitors
+            // Diego authenticates once via /admin/auth/spotify
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initSpotifyWidget);
+
+        // CTA Button functionality
+        document.querySelector('.cta-button').addEventListener('click', function() {
+            document.querySelector('#projects').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.style.animationPlayState = 'paused';
+            observer.observe(card);
+        });
+
+        // Add some interactive hover effects
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-12px) scale(1.02)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(-8px) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
