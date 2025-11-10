@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Luis Fernando Diego - Complete Project History">
+    <meta name="author" content="Luis Fernando Diego">
+    <title>Projekthistorie | dev.lfdiego.xyz</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Roboto', Arial, sans-serif;
+            background-color: #121212;
+            color: #EAEAEA;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .nav-container {
+            position: sticky;
+            top: 20px;
+            z-index: 9999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background-color: rgba(18, 18, 18, 0.75);
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            border-radius: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 0 8px 32px rgba(0, 0, 0, 0.5), 0 16px 64px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 40px;
+        }
+
+        .nav-container::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(18, 18, 18, 0.9) 0%, rgba(18, 18, 18, 0) 100%);
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00FFFF;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #EAEAEA;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00FFFF;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+            border-radius: 20px;
+            padding: 60px 50px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #00FFFF;
+            margin-bottom: 15px;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #EAEAEA;
+            opacity: 0.85;
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #EAEAEA;
+            padding: 12px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: rgba(0, 255, 255, 0.4);
+            background-color: rgba(0, 255, 255, 0.1);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #00FFFF 0%, #00CCCC 100%);
+            color: #121212;
+            border-color: transparent;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .project-card {
+            background-color: #252525;
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card:hover {
+            border-color: rgba(0, 255, 255, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 255, 255, 0.2);
+        }
+
+        .project-card.hidden {
+            display: none;
+        }
+
+        .project-year {
+            font-size: 0.9rem;
+            color: #00FFFF;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #EAEAEA;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            font-size: 1rem;
+            color: #EAEAEA;
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .project-tag {
+            background-color: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            color: #00FFFF;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            color: #00FFFF;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #00CCCC;
+        }
+
+        .project-link::after {
+            content: " →";
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .page-header {
+                padding: 40px 30px;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav-container">
+            <div class="logo">dev.lfdiego.xyz</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Alle Projekte</a></li>
+                <li><a href="https://lfdiego.xyz">Hauptseite</a></li>
+                <li><a href="https://github.com/DiegoLikesPizza" target="_blank">GitHub</a></li>
+            </ul>
+        </nav>
+
+        <div class="page-header">
+            <h1 class="page-title">Projekthistorie</h1>
+            <p class="page-subtitle">
+                Eine chronologische Übersicht aller meiner Projekte - von den neuesten Entwicklungen
+                bis zu meinen ersten Schritten in der Programmierung.
+            </p>
+        </div>
+
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterProjects('all')">Alle</button>
+            <button class="filter-btn" onclick="filterProjects('web')">Web Development</button>
+            <button class="filter-btn" onclick="filterProjects('fullstack')">Full-Stack</button>
+            <button class="filter-btn" onclick="filterProjects('frontend')">Frontend</button>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid">
+            <!-- 2024 Projects -->
+            <div class="project-card" data-category="web frontend">
+                <div class="project-year">2024</div>
+                <h3 class="project-title">Portfolio Website v2</h3>
+                <p class="project-description">
+                    Moderne Portfolio-Website mit asymmetrischem Grid-Layout, responsivem Design
+                    und interaktiven Animationen. Entwickelt mit reinem HTML, CSS und JavaScript.
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">HTML5</span>
+                    <span class="project-tag">CSS3</span>
+                    <span class="project-tag">JavaScript</span>
+                    <span class="project-tag">Responsive</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://lfdiego.xyz" class="project-link" target="_blank">Live Demo</a>
+                    <a href="https://github.com/DiegoLikesPizza" class="project-link" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="web frontend">
+                <div class="project-year">2024</div>
+                <h3 class="project-title">Developer Subdomain</h3>
+                <p class="project-description">
+                    Spezialisierte Developer-Seite mit Toolkit-Widget und Projekthistorie.
+                    Fokus auf technische Fähigkeiten und chronologische Projektübersicht.
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">HTML5</span>
+                    <span class="project-tag">CSS3</span>
+                    <span class="project-tag">JavaScript</span>
+                </div>
+                <div class="project-links">
+                    <a href="index.html" class="project-link">Live Demo</a>
+                </div>
+            </div>
+
+
+
+            <!-- 2023 Projects -->
+            <div class="project-card" data-category="web frontend">
+                <div class="project-year">2023</div>
+                <h3 class="project-title">React Dashboard</h3>
+                <p class="project-description">
+                    Interaktives Dashboard mit React und Tailwind CSS. Features: Datenvisualisierung,
+                    Echtzeit-Updates, responsive Charts und moderne UI-Komponenten.
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">React</span>
+                    <span class="project-tag">Tailwind CSS</span>
+                    <span class="project-tag">JavaScript</span>
+                    <span class="project-tag">Charts</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/DiegoLikesPizza" class="project-link" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="fullstack">
+                <div class="project-year">2023</div>
+                <h3 class="project-title">E-Commerce Platform</h3>
+                <p class="project-description">
+                    Full-Stack E-Commerce Lösung mit Node.js Backend, Express API,
+                    MongoDB Datenbank und React Frontend. Inklusive Warenkorb und Checkout-System.
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">Node.js</span>
+                    <span class="project-tag">Express</span>
+                    <span class="project-tag">MongoDB</span>
+                    <span class="project-tag">React</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/DiegoLikesPizza" class="project-link" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="web frontend">
+                <div class="project-year">2023</div>
+                <h3 class="project-title">Portfolio Website v1</h3>
+                <p class="project-description">
+                    Erste Version meiner Portfolio-Website. Einfaches, cleanes Design
+                    mit Fokus auf Lesbarkeit und Performance.
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">HTML5</span>
+                    <span class="project-tag">CSS3</span>
+                    <span class="project-tag">JavaScript</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/DiegoLikesPizza" class="project-link" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <!-- 2022 Projects -->
+            <div class="project-card" data-category="web frontend">
+                <div class="project-year">2022</div>
+                <h3 class="project-title">Task Management App</h3>
+                <p class="project-description">
+                    Produktivitäts-App mit lokaler Datenspeicherung. Features: Drag & Drop,
+                    Kategorien, Prioritäten und Deadline-Tracking.
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">JavaScript</span>
+                    <span class="project-tag">LocalStorage</span>
+                    <span class="project-tag">CSS3</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/DiegoLikesPizza" class="project-link" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="web frontend">
+                <div class="project-year">2022</div>
+                <h3 class="project-title">Weather Dashboard</h3>
+                <p class="project-description">
+                    Wetter-App mit API-Integration und Visualisierungen. Zeigt aktuelle Wetterdaten,
+                    Vorhersagen und interaktive Karten.
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">JavaScript</span>
+                    <span class="project-tag">API</span>
+                    <span class="project-tag">CSS3</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/DiegoLikesPizza" class="project-link" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="web frontend">
+                <div class="project-year">2022</div>
+                <h3 class="project-title">Calculator App</h3>
+                <p class="project-description">
+                    Moderner Taschenrechner mit erweiterten Funktionen.
+                    Unterstützt wissenschaftliche Berechnungen und Verlauf.
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">JavaScript</span>
+                    <span class="project-tag">HTML5</span>
+                    <span class="project-tag">CSS3</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/DiegoLikesPizza" class="project-link" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <!-- 2021 Projects -->
+            <div class="project-card" data-category="web frontend">
+                <div class="project-year">2021</div>
+                <h3 class="project-title">Landing Page Collection</h3>
+                <p class="project-description">
+                    Sammlung von verschiedenen Landing Pages für unterschiedliche Use Cases.
+                    Fokus auf Conversion-Optimierung und moderne Designs.
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">HTML5</span>
+                    <span class="project-tag">CSS3</span>
+                    <span class="project-tag">JavaScript</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/DiegoLikesPizza" class="project-link" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="web frontend">
+                <div class="project-year">2021</div>
+                <h3 class="project-title">Quiz Application</h3>
+                <p class="project-description">
+                    Interaktive Quiz-App mit verschiedenen Kategorien und Schwierigkeitsgraden.
+                    Inklusive Score-Tracking und Timer-Funktion.
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">JavaScript</span>
+                    <span class="project-tag">HTML5</span>
+                    <span class="project-tag">CSS3</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/DiegoLikesPizza" class="project-link" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <!-- 2020 Projects -->
+            <div class="project-card" data-category="web frontend">
+                <div class="project-year">2020</div>
+                <h3 class="project-title">Personal Blog</h3>
+                <p class="project-description">
+                    Minimalistischer Blog mit Markdown-Support und responsivem Design.
+                    Features: Artikel-Kategorien, Suchfunktion und Dark Mode.
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">HTML5</span>
+                    <span class="project-tag">CSS3</span>
+                    <span class="project-tag">JavaScript</span>
+                    <span class="project-tag">Markdown</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/DiegoLikesPizza" class="project-link" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="web frontend">
+                <div class="project-year">2020</div>
+                <h3 class="project-title">Music Player UI</h3>
+                <p class="project-description">
+                    Moderne Music Player Oberfläche mit Playlist-Management und Audio-Visualisierung.
+                    Unterstützt verschiedene Audio-Formate.
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">JavaScript</span>
+                    <span class="project-tag">Web Audio API</span>
+                    <span class="project-tag">CSS3</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/DiegoLikesPizza" class="project-link" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="web frontend">
+                <div class="project-year">2020</div>
+                <h3 class="project-title">Recipe Finder</h3>
+                <p class="project-description">
+                    Rezept-Suchmaschine mit API-Integration. Filterfunktionen nach Zutaten,
+                    Kochzeit und Schwierigkeitsgrad.
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">JavaScript</span>
+                    <span class="project-tag">REST API</span>
+                    <span class="project-tag">CSS3</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/DiegoLikesPizza" class="project-link" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <!-- 2019 Projects -->
+            <div class="project-card" data-category="web frontend">
+                <div class="project-year">2019</div>
+                <h3 class="project-title">Pomodoro Timer</h3>
+                <p class="project-description">
+                    Produktivitäts-Timer basierend auf der Pomodoro-Technik.
+                    Mit Statistiken, Benachrichtigungen und anpassbaren Intervallen.
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">JavaScript</span>
+                    <span class="project-tag">HTML5</span>
+                    <span class="project-tag">CSS3</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/DiegoLikesPizza" class="project-link" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="web frontend">
+                <div class="project-year">2019</div>
+                <h3 class="project-title">Color Palette Generator</h3>
+                <p class="project-description">
+                    Tool zur Generierung harmonischer Farbpaletten für Webdesign.
+                    Export-Funktionen für verschiedene Formate (HEX, RGB, HSL).
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">JavaScript</span>
+                    <span class="project-tag">CSS3</span>
+                    <span class="project-tag">Color Theory</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/DiegoLikesPizza" class="project-link" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="web frontend">
+                <div class="project-year">2019</div>
+                <h3 class="project-title">Expense Tracker</h3>
+                <p class="project-description">
+                    Ausgaben-Tracker mit Kategorisierung und Visualisierungen.
+                    Monatliche Übersichten und Budget-Warnungen.
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">JavaScript</span>
+                    <span class="project-tag">LocalStorage</span>
+                    <span class="project-tag">Charts.js</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/DiegoLikesPizza" class="project-link" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="web frontend">
+                <div class="project-year">2019</div>
+                <h3 class="project-title">Typing Speed Test</h3>
+                <p class="project-description">
+                    Tipp-Geschwindigkeitstest mit Echtzeit-Feedback und Genauigkeitsmessung.
+                    Verschiedene Schwierigkeitsstufen und Texte.
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">JavaScript</span>
+                    <span class="project-tag">HTML5</span>
+                    <span class="project-tag">CSS3</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/DiegoLikesPizza" class="project-link" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter cards
+            cards.forEach(card => {
+                if (category === 'all') {
+                    card.classList.remove('hidden');
+                } else {
+                    const cardCategories = card.getAttribute('data-category');
+                    if (cardCategories.includes(category)) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
