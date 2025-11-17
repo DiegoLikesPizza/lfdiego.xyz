@@ -3,876 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Luis Fernando Diego - Web Developer and Software Engineer Portfolio">
-    <meta name="author" content="Luis Fernando Diego">
+    <meta name="description" content="Diego - Web Developer and Software Engineer Portfolio">
+    <meta name="author" content="Diego">
     <title>Diego | lfdiego.xyz</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: 'Inter', 'Roboto', Arial, sans-serif;
-            background-color: #121212;
-            color: #EAEAEA;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Container Styles */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .main-container {
-            background-color: #252525;
-            border-radius: 20px;
-            padding: 30px;
-            margin: 20px 0;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        /* SECTION 1: Above the Fold */
-        .section-one {
-            min-height: 100vh;
-            padding: 40px 20px;
-        }
-
-        .asymmetric-grid {
-            display: grid;
-            grid-template-columns: 49% 49%;
-            grid-template-rows: auto 30px 1fr 1fr;
-            gap: 2%;
-            max-width: 1200px;
-            margin: 100px auto 0 auto;
-            height: auto;
-            min-height: 600px;
-        }
-
-        /* Navigation */
-        .nav-container {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 40px);
-            max-width: 1200px;
-            background-color: #252525;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 20px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            box-sizing: border-box;
-        }
-
-        /* Fade-out Mask für Boxen hinter der Navigation */
-        .section-one::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: linear-gradient(to bottom, #121212 0%, #121212 60%, transparent 100%);
-            z-index: 999;
-            pointer-events: none;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #00FFFF;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #EAEAEA;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #00FFFF;
-        }
-
-        /* Hero Section */
-        .hero-container {
-            grid-column: 1 / -1;
-            grid-row: 1;
-            background-color: #252525;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 50px 50px 60px 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            min-height: 350px;
-            width: 100%;
-            box-sizing: border-box;
-            overflow: visible;
-            position: relative;
-        }
-
-        .hero-title {
-            font-size: 3.2rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #00FFFF, #EAEAEA);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.3;
-            max-width: 100%;
-            word-wrap: break-word;
-            padding-bottom: 5px;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: #EAEAEA;
-            margin-bottom: 25px;
-            opacity: 0.9;
-            font-weight: 500;
-            max-width: 100%;
-        }
-
-        .hero-description {
-            font-size: 1.05rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
-            line-height: 1.6;
-            max-width: 100%;
-            color: #EAEAEA;
-        }
-
-        .cta-button {
-            background-color: #00FFFF;
-            color: #121212;
-            padding: 16px 32px;
-            border: none;
-            border-radius: 16px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            align-self: flex-start;
-            margin-top: 0;
-            margin-bottom: 0;
-            text-decoration: none;
-            display: inline-block;
-            max-width: fit-content;
-            flex-shrink: 0;
-        }
-
-        .cta-button:hover {
-            background-color: #00E6E6;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.3);
-        }
-
-        /* "Über mich" Box - Hoher linker Block (2 Zeilen) */
-        .about-container {
-            grid-column: 1;
-            grid-row: 3 / span 2;
-            background-color: #252525;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            transition: border 0.3s ease;
-            box-sizing: border-box;
-        }
-
-        .about-container:hover {
-            border: 1px solid rgba(0, 255, 255, 0.3);
-        }
-
-        /* "Skills & Technologien" Box - Oberer rechter Block */
-        .skills-container {
-            grid-column: 2;
-            grid-row: 3;
-            background-color: #252525;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            transition: border 0.3s ease;
-            box-sizing: border-box;
-        }
-
-        .skills-container:hover {
-            border: 1px solid rgba(0, 255, 255, 0.3);
-        }
-
-
-
-        /* Entferne die alte right-side Struktur */
-        .right-side {
-            display: none;
-        }
-
-        .container-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #00FFFF;
-            margin-bottom: 15px;
-        }
-
-        .container-text {
-            color: #EAEAEA;
-            opacity: 0.9;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        .skills-container .container-title {
-            margin-bottom: 8px;
-        }
-
-        .skills-container .container-text {
-            margin-bottom: 5px;
-        }
-
-        .skills-carousel-container {
-            margin-top: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .skills-carousel-container::before,
-        .skills-carousel-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 40px;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        .skills-carousel-container::before {
-            left: 0;
-            background: linear-gradient(to right, #252525, transparent);
-        }
-
-        .skills-carousel-container::after {
-            right: 0;
-            background: linear-gradient(to left, #252525, transparent);
-        }
-
-        .skills-row {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            animation-duration: 25s;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-            width: max-content;
-        }
-
-        .skills-row:hover {
-            animation-play-state: paused;
-        }
-
-        .skills-row-1 {
-            animation-name: scrollLeft;
-        }
-
-        .skills-row-2 {
-            animation-name: scrollRight;
-        }
-
-        @keyframes scrollLeft {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-33.333%); }
-        }
-
-        @keyframes scrollRight {
-            0% { transform: translateX(-33.333%); }
-            100% { transform: translateX(0%); }
-        }
-
-        .skill-card {
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 6px 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            min-width: fit-content;
-            flex-shrink: 0;
-            transition: all 0.3s ease;
-            height: 32px;
-            box-sizing: border-box;
-        }
-
-        .skill-card:hover {
-            border-color: rgba(0, 255, 255, 0.4);
-            background-color: rgba(0, 255, 255, 0.1);
-            box-shadow: 0 2px 8px rgba(0, 255, 255, 0.2);
-        }
-
-        .skill-icon {
-            width: 16px;
-            height: 16px;
-            flex-shrink: 0;
-        }
-
-        .skill-name {
-            color: #EAEAEA;
-            font-size: 0.85rem;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-
-        /* Philosophy Boxes */
-        .philosophy-boxes {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .philosophy-box {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .philosophy-box:hover {
-            border-color: rgba(0, 255, 255, 0.4);
-            background-color: rgba(0, 255, 255, 0.08);
-            box-shadow: 0 2px 8px rgba(0, 255, 255, 0.15);
-        }
-
-        .philosophy-icon {
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        .philosophy-content {
-            flex: 1;
-        }
-
-        .philosophy-title {
-            color: #00FFFF;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin: 0 0 3px 0;
-        }
-
-        .philosophy-text {
-            color: #EAEAEA;
-            font-size: 0.75rem;
-            opacity: 0.8;
-            line-height: 1.4;
-            margin: 0;
-        }
-
-        /* About Me Info Boxes */
-        .about-info-boxes {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .info-box {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .info-box:hover {
-            border-color: rgba(0, 255, 255, 0.4);
-            background-color: rgba(0, 255, 255, 0.08);
-            box-shadow: 0 2px 8px rgba(0, 255, 255, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .info-icon {
-            font-size: 1.3rem;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        .info-content {
-            flex: 1;
-        }
-
-        .info-title {
-            color: #00FFFF;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin: 0 0 4px 0;
-        }
-
-        .info-text {
-            color: #EAEAEA;
-            font-size: 0.8rem;
-            opacity: 0.85;
-            line-height: 1.4;
-            margin: 0;
-        }
-
-        /* SECTION 2: Below the Fold - Single Project Container */
-        .section-two {
-            padding: 80px 20px;
-            background: linear-gradient(180deg, #121212 0%, #0a0a0a 100%);
-        }
-
-        .projects-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: #252525;
-            border-radius: 20px;
-            padding: 50px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: 700;
-            color: #00FFFF;
-            margin-bottom: 40px;
-            background: linear-gradient(135deg, #00FFFF 0%, #FFFFFF 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        /* Responsive Grid für mittlere Bildschirme */
-        @media (max-width: 1024px) {
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-        }
-
-        .project-card {
-            background-color: #3a3a3a;
-            border-radius: 20px;
-            padding: 25px;
-            aspect-ratio: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 1px solid #4a4a4a;
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(0, 255, 255, 0.2);
-            border: 2px solid #00FFFF;
-            background-color: #404040;
-        }
-
-        .project-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #00FFFF;
-            margin-bottom: 15px;
-        }
-
-        .project-description {
-            color: #EAEAEA;
-            opacity: 0.8;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        /* Tablet Responsiveness */
-        @media (max-width: 1024px) and (min-width: 769px) {
-            .asymmetric-grid {
-                gap: 25px;
-                padding: 0 15px;
-            }
-
-            .nav-container,
-            .hero-container,
-            .about-container,
-            .skills-container,
-            .music-container {
-                padding: 25px;
-            }
-
-            .hero-title {
-                font-size: 3rem;
-            }
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .section-one {
-                padding: 20px 15px;
-            }
-
-            .asymmetric-grid {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto auto auto auto;
-                height: auto;
-                gap: 15px;
-                min-height: auto;
-                margin-top: 80px;
-            }
-
-            .nav-container {
-                top: 15px;
-                width: calc(100% - 30px);
-                padding: 15px 20px;
-            }
-
-            .hero-container {
-                grid-column: 1;
-                grid-row: 1;
-                padding: 40px 35px 50px 35px;
-                text-align: center;
-                min-height: 300px;
-                align-items: center;
-                overflow: visible;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-                margin-bottom: 12px;
-                line-height: 1.3;
-                padding-bottom: 3px;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-                margin-bottom: 20px;
-            }
-
-            .hero-description {
-                font-size: 1rem;
-                margin-bottom: 30px;
-            }
-
-            .cta-button {
-                padding: 14px 28px;
-                font-size: 1rem;
-                align-self: center;
-                margin-top: 0;
-                margin-bottom: 0;
-            }
-
-            .about-container {
-                grid-column: 1;
-                grid-row: 2;
-                padding: 25px;
-            }
-
-            .skills-container {
-                grid-column: 1;
-                grid-row: 3;
-                padding: 25px;
-            }
-
-
-
-            .nav-links {
-                gap: 20px;
-            }
-
-            .nav-links a {
-                font-size: 0.9rem;
-            }
-
-            .right-side {
-                display: none;
-            }
-
-            .skills-carousel-container {
-                height: 35px;
-                gap: 2px;
-            }
-
-            .skills-row {
-                height: 15px;
-            }
-
-            .skill-card {
-                min-width: 50px;
-                padding: 1px 4px;
-                height: 14px;
-                gap: 3px;
-            }
-
-            .skill-icon {
-                width: 10px;
-                height: 10px;
-            }
-
-            .skill-name {
-                font-size: 0.65rem;
-            }
-
-            .philosophy-box {
-                padding: 10px 12px;
-                gap: 10px;
-            }
-
-            .philosophy-icon {
-                font-size: 1rem;
-            }
-
-            .philosophy-title {
-                font-size: 0.8rem;
-            }
-
-            .philosophy-text {
-                font-size: 0.7rem;
-            }
-
-            .about-info-boxes {
-                grid-template-columns: 1fr;
-                gap: 10px;
-                margin-top: 15px;
-            }
-
-            .info-box {
-                padding: 12px;
-                gap: 8px;
-            }
-
-            .info-icon {
-                font-size: 1.1rem;
-            }
-
-            .info-title {
-                font-size: 0.85rem;
-            }
-
-            .info-text {
-                font-size: 0.75rem;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .main-container {
-                padding: 20px;
-                margin: 15px 0;
-            }
-
-            /* Section 2 Mobile */
-            .section-two {
-                padding: 60px 15px;
-            }
-
-            .projects-container {
-                padding: 30px;
-            }
-
-            .section-title {
-                font-size: 2rem;
-                margin-bottom: 30px;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .project-card {
-                padding: 20px;
-                aspect-ratio: auto;
-                min-height: 180px;
-            }
-        }
-
-        /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Additional Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Stagger animation delays */
-        .project-card:nth-child(1) { animation-delay: 0.1s; }
-        .project-card:nth-child(2) { animation-delay: 0.2s; }
-        .project-card:nth-child(3) { animation-delay: 0.3s; }
-        .project-card:nth-child(4) { animation-delay: 0.4s; }
-        .project-card:nth-child(5) { animation-delay: 0.5s; }
-        .project-card:nth-child(6) { animation-delay: 0.6s; }
-
-        /* Age Widget Styles */
-        .age-container {
-            grid-column: 2;
-            grid-row: 4;
-            background-color: #252525;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            transition: border 0.3s ease;
-            box-sizing: border-box;
-        }
-
-        .age-container:hover {
-            border: 1px solid rgba(0, 255, 255, 0.3);
-        }
-
-        .age-widget {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-top: 15px;
-        }
-
-        .age-display {
-            text-align: center;
-            padding: 20px;
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(0, 255, 255, 0.05));
-            border-radius: 16px;
-            border: 1px solid rgba(0, 255, 255, 0.2);
-        }
-
-        .age-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #00FFFF;
-            line-height: 1;
-            margin-bottom: 5px;
-        }
-
-        .age-label {
-            color: #EAEAEA;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        .birthday-countdown {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .countdown-icon {
-            font-size: 2rem;
-            flex-shrink: 0;
-        }
-
-        .countdown-info {
-            flex: 1;
-        }
-
-        .countdown-number {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #FFFFFF;
-            line-height: 1;
-        }
-
-        .countdown-label {
-            color: #EAEAEA;
-            font-size: 0.85rem;
-            opacity: 0.8;
-            margin-top: 2px;
-        }
-
-        .birthday-text {
-            color: #EAEAEA;
-            font-size: 0.9rem;
-            opacity: 0.7;
-            font-style: italic;
-        }
-
-        /* Mobile responsiveness for age widget */
-        @media (max-width: 768px) {
-            .age-container {
-                grid-column: 1;
-                grid-row: 4;
-                padding: 25px;
-            }
-
-            .age-number {
-                font-size: 2.5rem;
-            }
-
-            .countdown-number {
-                font-size: 1.5rem;
-            }
-
-            .countdown-icon {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- SECTION 1: Above the Fold - Asymmetric Grid -->
@@ -892,9 +33,9 @@
             <!-- Hero Section (Full Width) -->
             <div class="hero-container">
                 <h1 class="hero-title">Diego</h1>
-                <p class="hero-subtitle">Full-Stack Developer & Software Engineer</p>
+                <p class="hero-subtitle">Schüler & Developer</p>
                 <p class="hero-description">
-                    Willkommen auf meiner Portfolio-Seite! Ich entwickle moderne Webanwendungen
+                    Willkommen auf meiner Website! Ich entwickle moderne Webanwendungen
                     und Software-Lösungen mit Leidenschaft für sauberen Code und innovative Technologien.
                 </p>
                 <button class="cta-button">Projekte ansehen</button>
@@ -926,7 +67,7 @@
                         <div class="info-icon">🎓</div>
                         <div class="info-content">
                             <h4 class="info-title">Bildung</h4>
-                            <p class="info-text">Gymnasium mit Fokus auf Informatik und Mathematik</p>
+                            <p class="info-text">Naturwissenschaftlich-technologisches Gymnasium</p>
                         </div>
                     </div>
 
@@ -934,7 +75,7 @@
                         <div class="info-icon">💻</div>
                         <div class="info-content">
                             <h4 class="info-title">Erfahrung</h4>
-                            <p class="info-text">3+ Jahre praktische Entwicklungserfahrung</p>
+                            <p class="info-text">über 2 Jahre praktische Entwicklungserfahrung</p>
                         </div>
                     </div>
 
@@ -950,16 +91,16 @@
                         <div class="info-icon">🎯</div>
                         <div class="info-content">
                             <h4 class="info-title">Ziele</h4>
-                            <p class="info-text">Karriere im Bereich Software Engineering</p>
+                            <p class="info-text">Karriere im Bereich Software Entwicklung</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- "Skills & Technologien" Box - Oberer rechter Block -->
+            <!-- "Skills & Tools" Box - Oberer rechter Block -->
             <div class="skills-container">
-                <h2 class="container-title">Skills & Technologien</h2>
-                <p class="container-text">Meine Expertise umfasst:</p>
+                <h2 class="container-title">Skills & Tools</h2>
+                <p class="container-text">Die Skills und Tools zu denen ich greife:</p>
                 <div class="skills-carousel-container">
                     <!-- Erste Reihe - scrollt nach links -->
                     <div class="skills-row skills-row-1">
@@ -1121,9 +262,9 @@
                 <!-- Philosophy Boxes -->
                 <div class="philosophy-boxes">
                     <div class="philosophy-box">
-                        <div class="philosophy-icon">🔓</div>
+                        <div class="philosophy-icon">🌍</div>
                         <div class="philosophy-content">
-                            <h4 class="philosophy-title">Open Source First</h4>
+                            <h4 class="philosophy-title">Open Source Lösungen</h4>
                             <p class="philosophy-text">Bevorzugung von Open-Source-Lösungen für Transparenz und Community-Support</p>
                         </div>
                     </div>
@@ -1167,122 +308,39 @@
 
             <div class="projects-grid">
                 <!-- Project Card 1 -->
-                <div class="project-card fade-in">
-                    <h3 class="project-title">Seminararbeit</h3>
-                    <p class="project-description">
-                        Seminararbeit im Fach Physik über die Geschichte des CERN
-                    </p>
-                </div>
+                <a href="/seminararbeit" class="project-link">
+                    <div class="project-card fade-in">
+                        <h3 class="project-title">Seminararbeit</h3>
+                        <p class="project-description">
+                            Seminararbeit im Fach Physik über die Geschichte des CERN
+                        </p>
+                    </div>
+                </a>
 
                 <!-- Project Card 2 -->
-                <div class="project-card fade-in">
-                    <h3 class="project-title">DiegoAddons</h3>
-                    <p class="project-description">
-                        discontinued modification project for Minecraft
-                    </p>
-                </div>
+                <a href="https://github.com/DiegoLikesPizza/CUTECAT" class="project-link">
+                    <div class="project-card fade-in">
+                        <h3 class="project-title">CUTECAT</h3>
+                        <p class="project-description">
+                            Schulprojekt: ferngesteuerter fahrbarer Roboter
+                        </p>
+                    </div>
+                </a>
 
                 <!-- Project Card 3 -->
-                <div class="project-card fade-in">
-                    <h3 class="project-title">DiegoExtras</h3>
-                    <p class="project-description">
-                        modification project for Minecraft
-                    </p>
-                </div>
+                <a href="#top" class="project-link">
+                    <div class="project-card fade-in">
+                        <h3 class="project-title">lfdiego.xyz</h3>
+                        <p class="project-description">
+                            Diese Website als ständige Work in Progress
+                        </p>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- JavaScript for future functionality -->
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Age and Birthday Calculator
-        function updateAgeAndBirthday() {
-            const birthDate = new Date(2006, 11, 16); // December 16, 2006 (month is 0-indexed)
-            const today = new Date();
-
-            // Calculate current age
-            let age = today.getFullYear() - birthDate.getFullYear();
-            const monthDiff = today.getMonth() - birthDate.getMonth();
-
-            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-                age--;
-            }
-
-            // Calculate days until next birthday
-            const currentYear = today.getFullYear();
-            let nextBirthday = new Date(currentYear, 11, 16); // December 16 this year
-
-            // If birthday already passed this year, calculate for next year
-            if (today > nextBirthday) {
-                nextBirthday = new Date(currentYear + 1, 11, 16);
-            }
-
-            const timeDiff = nextBirthday.getTime() - today.getTime();
-            const daysUntilBirthday = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-            // Update the display
-            document.getElementById('current-age').textContent = age;
-            document.getElementById('days-until-birthday').textContent = daysUntilBirthday;
-        }
-
-        // Update age and birthday on page load
-        updateAgeAndBirthday();
-
-        // Update daily at midnight
-        setInterval(updateAgeAndBirthday, 24 * 60 * 60 * 1000);
-
-        // CTA Button functionality
-        document.querySelector('.cta-button').addEventListener('click', function() {
-            document.querySelector('#projects').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        });
-
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all project cards
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.style.animationPlayState = 'paused';
-            observer.observe(card);
-        });
-
-        // Add some interactive hover effects
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-12px) scale(1.02)';
-            });
-
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(-8px) scale(1)';
-            });
-        });
-    </script>
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
