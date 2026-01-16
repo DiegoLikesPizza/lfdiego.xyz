@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+/* === Corporate Cyberpunk Design System === */
+
+:root {
+  /* Deep dark backgrounds - avoiding pure black */
+  --background: #0c0c14;
+  --background-secondary: #12121c;
+  --background-tertiary: #1a1a28;
+
+  /* Text colors */
+  --foreground: #e4e4e7;
+  --foreground-muted: #a1a1aa;
+
+  /* Primary Accent - Electric Cyan */
+  --accent-cyan: #00f0ff;
+  --accent-cyan-dim: #00b8c4;
+  --accent-cyan-glow: rgba(0, 240, 255, 0.4);
+
+  /* Secondary Accent - Neon Purple */
+  --accent-purple: #a855f7;
+  --accent-purple-dim: #7c3aed;
+  --accent-purple-glow: rgba(168, 85, 247, 0.4);
+
+  /* Borders and structure */
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(0, 240, 255, 0.2);
+
+  /* Grid pattern */
+  --grid-color: rgba(255, 255, 255, 0.03);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
+  --color-background-tertiary: var(--background-tertiary);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-accent-cyan-dim: var(--accent-cyan-dim);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-purple-dim: var(--accent-purple-dim);
+  --color-border: var(--border-color);
+  --color-border-glow: var(--border-glow);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+/* === Base Styles === */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+/* === Grid Background Pattern === */
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* === Glassmorphism Cards === */
+.glass-card {
+  background: rgba(18, 18, 28, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+}
+
+.glass-card-hover:hover {
+  border-color: var(--border-glow);
+  box-shadow: 0 0 20px var(--accent-cyan-glow);
+}
+
+/* === Neon Glow Effects === */
+.glow-cyan {
+  box-shadow:
+    0 0 5px var(--accent-cyan),
+    0 0 20px var(--accent-cyan-glow),
+    0 0 40px rgba(0, 240, 255, 0.1);
+}
+
+.glow-purple {
+  box-shadow:
+    0 0 5px var(--accent-purple),
+    0 0 20px var(--accent-purple-glow),
+    0 0 40px rgba(168, 85, 247, 0.1);
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 20px var(--accent-cyan-glow);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 20px var(--accent-purple-glow);
+}
+
+/* === Gradient Border Effect === */
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* === Selection Styles === */
+::selection {
+  background: var(--accent-cyan);
+  color: var(--background);
+}
+
+/* === Scrollbar Styling === */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--background-tertiary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan-dim);
+}
