@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { SiteHeader } from "@/components/SiteHeader";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -21,8 +22,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Diego | Developer & Designer",
-  description: "Personal portfolio with a corporate cyberpunk aesthetic. Building the future, one line of code at a time.",
+  title: "Diego Göttler — Developer & Co-Founder",
+  description:
+    "Developer and co-founder building fast, reliable web apps and custom software for businesses with Next.js, TypeScript and Tailwind.",
 };
 
 export default function RootLayout({
@@ -31,17 +33,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-grid-pattern min-h-screen`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}
       >
-        {/* Subtle radial gradient overlay for depth */}
-        <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--background-secondary)_0%,_var(--background)_70%)] pointer-events-none" />
-
-        {/* Main content */}
-        <div className="relative z-10">
-          {children}
-        </div>
+        <SiteHeader />
+        {children}
       </body>
     </html>
   );

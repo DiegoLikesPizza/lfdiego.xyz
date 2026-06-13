@@ -1,53 +1,56 @@
 @import "tailwindcss";
 
-/* === Corporate Cyberpunk Design System === */
+/* === Ledger Editorial — Design System ===
+   Near-monochrome, warm paper-white canvas, near-black ink, one
+   confident warm-vermilion accent used sparingly like a drop of ink. */
 
 :root {
-  /* Deep dark backgrounds - avoiding pure black */
-  --background: #0c0c14;
-  --background-secondary: #12121c;
-  --background-tertiary: #1a1a28;
+  /* Surfaces */
+  --background: #fafaf7;
+  --background-secondary: #f3f2ec;
+  --surface: #ffffff;
+  --surface-hover: #f7f6f1;
 
-  /* Text colors */
-  --foreground: #e4e4e7;
-  --foreground-muted: #a1a1aa;
+  /* Ink */
+  --foreground: #141414;
+  --foreground-muted: #56554f;
+  /* #6e6c64 clears WCAG AA (~5:1) on the paper bg — these micro-labels carry
+     real information (section indices, role, status), so they must be legible. */
+  --foreground-subtle: #6e6c64;
 
-  /* Primary Accent - Electric Cyan */
-  --accent-cyan: #00f0ff;
-  --accent-cyan-dim: #00b8c4;
-  --accent-cyan-glow: rgba(0, 240, 255, 0.4);
+  /* Structure */
+  --border-color: #e4e2db;
 
-  /* Secondary Accent - Neon Purple */
-  --accent-purple: #a855f7;
-  --accent-purple-dim: #7c3aed;
-  --accent-purple-glow: rgba(168, 85, 247, 0.4);
+  /* The single accent — used as graphics, dots, large/bold text and button
+     fills (#d4451f). For accent-colored *small* text, use accent-hover
+     (#b5371a) which clears WCAG AA on paper. */
+  --accent: #d4451f;
+  --accent-hover: #b5371a;
+  --accent-soft: rgba(212, 69, 31, 0.08);
 
-  /* Borders and structure */
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-glow: rgba(0, 240, 255, 0.2);
-
-  /* Grid pattern */
-  --grid-color: rgba(255, 255, 255, 0.03);
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(20, 20, 20, 0.04), 0 10px 30px rgba(20, 20, 20, 0.06);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-background-secondary: var(--background-secondary);
-  --color-background-tertiary: var(--background-tertiary);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
   --color-foreground: var(--foreground);
   --color-foreground-muted: var(--foreground-muted);
-  --color-accent-cyan: var(--accent-cyan);
-  --color-accent-cyan-dim: var(--accent-cyan-dim);
-  --color-accent-purple: var(--accent-purple);
-  --color-accent-purple-dim: var(--accent-purple-dim);
+  --color-foreground-subtle: var(--foreground-subtle);
   --color-border: var(--border-color);
-  --color-border-glow: var(--border-glow);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+
   --font-sans: var(--font-inter);
   --font-heading: var(--font-space-grotesk);
   --font-mono: var(--font-jetbrains-mono);
 }
 
-/* === Base Styles === */
+/* === Base === */
 html {
   scroll-behavior: smooth;
 }
@@ -57,93 +60,62 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* === Grid Background Pattern === */
-.bg-grid-pattern {
-  background-image:
-    linear-gradient(var(--grid-color) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
-/* === Glassmorphism Cards === */
-.glass-card {
-  background: rgba(18, 18, 28, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border-color);
-}
-
-.glass-card-hover:hover {
-  border-color: var(--border-glow);
-  box-shadow: 0 0 20px var(--accent-cyan-glow);
-}
-
-/* === Neon Glow Effects === */
-.glow-cyan {
-  box-shadow:
-    0 0 5px var(--accent-cyan),
-    0 0 20px var(--accent-cyan-glow),
-    0 0 40px rgba(0, 240, 255, 0.1);
-}
-
-.glow-purple {
-  box-shadow:
-    0 0 5px var(--accent-purple),
-    0 0 20px var(--accent-purple-glow),
-    0 0 40px rgba(168, 85, 247, 0.1);
-}
-
-.text-glow-cyan {
-  text-shadow: 0 0 20px var(--accent-cyan-glow);
-}
-
-.text-glow-purple {
-  text-shadow: 0 0 20px var(--accent-purple-glow);
-}
-
-/* === Gradient Border Effect === */
-.gradient-border {
-  position: relative;
-}
-
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-/* === Selection Styles === */
 ::selection {
-  background: var(--accent-cyan);
-  color: var(--background);
+  background: var(--accent);
+  color: #fff;
 }
 
-/* === Scrollbar Styling === */
+/* === Scrollbar === */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 11px;
+  height: 11px;
 }
-
 ::-webkit-scrollbar-track {
-  background: var(--background-secondary);
+  background: var(--background);
 }
-
 ::-webkit-scrollbar-thumb {
-  background: var(--background-tertiary);
-  border-radius: 4px;
+  background: #d8d6cd;
+  border-radius: 6px;
+  border: 3px solid var(--background);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c7c5bb;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-cyan-dim);
+/* === Editorial underline-wipe for text links === */
+.link-wipe {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1.5px;
+  transition: background-size 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-wipe:hover,
+.link-wipe:focus-visible {
+  background-size: 100% 1.5px;
+}
+
+/* === Focus visibility === */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* === Reduced motion === */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
