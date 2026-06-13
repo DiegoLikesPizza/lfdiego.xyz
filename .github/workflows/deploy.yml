@@ -1,0 +1,40 @@
+name: Deploy to production
+
+# Deploys lfdiego.xyz on every push to main (and on-demand).
+# The build + publish happens on the Hetzner server via /srv/websites/lfdiego.xyz/deploy.sh.
+# This job only opens an SSH connection; the deploy key is locked to that one
+# script with a forced command, so it can do nothing else.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# No repo permissions needed — this job only reaches out over SSH.
+permissions: {}
+
+# Never let two deploys run at once; let an in-flight one finish.
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run server deploy over SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          SERVER: 5.75.165.180
+        run: |
+          set -euo pipefail
+          if [ -z "${DEPLOY_SSH_KEY:-}" ]; then
+            echo "::error::Missing repository secret DEPLOY_SSH_KEY."
+            exit 1
+          fi
+          mkdir -p ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -t ed25519 "$SERVER" >> ~/.ssh/known_hosts 2>/dev/null
+          # The forced command on the server runs deploy.sh regardless of what we send.
+          ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes "root@$SERVER" deploy
