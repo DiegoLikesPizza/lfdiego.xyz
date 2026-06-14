@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Class-based dark mode (the .dark class is toggled by ThemeToggle and the
+   pre-paint script in layout.tsx). Enables dark: utilities for the few cases
+   CSS variables alone can't cover. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* === Ledger Editorial — Design System ===
    Near-monochrome, warm paper-white canvas, near-black ink, one
    confident warm-vermilion accent used sparingly like a drop of ink. */
@@ -27,9 +32,39 @@
   --accent: #d4451f;
   --accent-hover: #b5371a;
   --accent-soft: rgba(212, 69, 31, 0.08);
+  /* text/icon color that sits ON the accent fill (buttons) */
+  --accent-foreground: #ffffff;
 
   --radius: 10px;
   --shadow: 0 1px 2px rgba(20, 20, 20, 0.04), 0 10px 30px rgba(20, 20, 20, 0.06);
+
+  color-scheme: light;
+}
+
+/* === Dark theme — a warm, near-black evolution of the same system.
+   Every color is a CSS variable, so flipping these on .dark re-themes the
+   whole site; components never need dark: utilities. === */
+.dark {
+  --background: #15140f;
+  --background-secondary: #1c1a14;
+  --surface: #1e1c15;
+  --surface-hover: #26241b;
+
+  --foreground: #f3f0e7;
+  --foreground-muted: #b0ac9f;
+  --foreground-subtle: #908b7d;
+
+  --border-color: #312e24;
+
+  /* brighter vermilion for pop/contrast on the dark ground; dark text on the fill */
+  --accent: #f0613d;
+  --accent-hover: #f4805f;
+  --accent-soft: rgba(240, 97, 61, 0.12);
+  --accent-foreground: #15140f;
+
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 30px rgba(0, 0, 0, 0.45);
+
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -44,6 +79,7 @@
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-soft: var(--accent-soft);
+  --color-accent-foreground: var(--accent-foreground);
 
   --font-sans: var(--font-inter);
   --font-heading: var(--font-space-grotesk);
@@ -66,7 +102,7 @@ body {
 
 ::selection {
   background: var(--accent);
-  color: #fff;
+  color: var(--accent-foreground);
 }
 
 /* === Scrollbar === */
@@ -84,6 +120,12 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #c7c5bb;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #3a3730;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #4a473d;
 }
 
 /* === Editorial underline-wipe for text links === */

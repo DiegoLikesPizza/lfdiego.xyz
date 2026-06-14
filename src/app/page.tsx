@@ -1,6 +1,6 @@
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
-import { Monogram } from "@/components/Monogram";
+import { Logo } from "@/components/Logo";
 import { AboutSection } from "@/components/AboutSection";
 import { StackSection } from "@/components/StackSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
@@ -47,7 +47,7 @@ export default function Home() {
               <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
                 <a
                   href="#work"
-                  className="group inline-flex items-center gap-2 rounded-[var(--radius)] bg-accent px-6 py-3.5 text-base font-medium text-white transition-colors hover:bg-accent-hover"
+                  className="group inline-flex items-center gap-2 rounded-[var(--radius)] bg-accent px-6 py-3.5 text-base font-medium text-accent-foreground transition-colors hover:bg-accent-hover"
                 >
                   View work
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -86,7 +86,7 @@ export default function Home() {
 
           <div className="hidden justify-end lg:col-span-3 lg:flex">
             <Reveal delay={0.12}>
-              <Monogram size="lg" />
+              <Logo size="lg" />
             </Reveal>
           </div>
         </div>

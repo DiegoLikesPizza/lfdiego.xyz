@@ -1,7 +1,7 @@
 import { Mail, Github, Linkedin, ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { SectionIndex } from "@/components/SectionIndex";
-import { Monogram } from "@/components/Monogram";
+import { Logo } from "@/components/Logo";
 
 const channels = [
   {
@@ -89,7 +89,7 @@ export function ContactSection() {
       <footer className="border-t border-border">
         <div className="mx-auto flex max-w-[1100px] flex-col items-center justify-between gap-5 px-6 py-10 md:flex-row md:px-10">
           <div className="flex items-center gap-3">
-            <Monogram size="sm" />
+            <Logo size="sm" />
             <p className="font-mono text-xs text-foreground-muted">
               © 2026 Diego Göttler
             </p>

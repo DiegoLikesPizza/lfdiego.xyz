@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { Monogram } from "@/components/Monogram";
+import { Logo } from "@/components/Logo";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const links = [
   { id: "about", label: "About" },
@@ -59,7 +60,7 @@ export function SiteHeader() {
           aria-label="Diego Göttler — back to top"
           className="rounded-[8px]"
         >
-          <Monogram size="sm" />
+          <Logo size="sm" />
         </a>
 
         <div className="flex items-center gap-1 sm:gap-2">
@@ -87,9 +88,11 @@ export function SiteHeader() {
             ))}
           </ul>
 
+          <ThemeToggle />
+
           <a
             href="#contact"
-            className="ml-1 inline-flex items-center rounded-[var(--radius)] border border-accent/45 px-3.5 py-1.5 text-sm font-medium text-accent-hover transition-colors hover:bg-accent hover:text-white"
+            className="ml-1 inline-flex items-center rounded-[var(--radius)] border border-accent/45 px-3.5 py-1.5 text-sm font-medium text-accent-hover transition-colors hover:bg-accent hover:text-accent-foreground"
           >
             Get in touch
           </a>

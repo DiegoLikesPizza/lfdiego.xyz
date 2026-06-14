@@ -1,6 +1,6 @@
 import { Reveal } from "@/components/Reveal";
 import { SectionIndex } from "@/components/SectionIndex";
-import { Monogram } from "@/components/Monogram";
+import { Logo } from "@/components/Logo";
 
 export function AboutSection() {
   return (
@@ -15,7 +15,7 @@ export function AboutSection() {
             <SectionIndex label="01 / About" />
             <h2 className="sr-only">About</h2>
             <div className="mt-10">
-              <Monogram size="lg" />
+              <Logo size="lg" />
               <p className="mt-5 font-mono text-xs uppercase tracking-[0.12em] text-foreground-subtle">
                 Open to freelance &amp; collaboration
               </p>
