@@ -1,26 +1,43 @@
-import { AppWindow, Wrench, Gauge } from "lucide-react";
+import { AppWindow, Cpu, Gauge } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { SectionIndex } from "@/components/SectionIndex";
 
 const capabilities = [
   {
     icon: AppWindow,
-    title: "Web apps",
-    body: "Production React/Next.js apps and internal tools, built to last.",
+    title: "Web applications",
+    body: "React and Next.js front ends, plus the small APIs behind them.",
   },
   {
-    icon: Wrench,
-    title: "Custom software for SMBs",
-    body: "Practical tools that fit how a small business actually works.",
+    icon: Cpu,
+    title: "Desktop & hardware",
+    body: "Java desktop apps — including one that drives an Arduino rover over HTTP.",
   },
   {
     icon: Gauge,
     title: "Performance & SEO",
-    body: "Fast, accessible, search-friendly sites that load instantly.",
+    body: "Fast, accessible, search-friendly pages — this site included.",
   },
 ];
 
-const stack = ["Next.js", "TypeScript", "Tailwind CSS", "React", "Node.js"];
+const stackGroups = [
+  {
+    label: "Languages & frameworks",
+    items: [
+      "TypeScript",
+      "JavaScript",
+      "Java",
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+      "Node.js",
+    ],
+  },
+  {
+    label: "Tools",
+    items: ["IntelliJ IDEA", "VS Code", "Git & GitHub"],
+  },
+];
 
 export function StackSection() {
   return (
@@ -53,18 +70,27 @@ export function StackSection() {
         ))}
       </div>
 
-      <Reveal delay={0.1}>
-        <ul className="mt-10 flex flex-wrap gap-2.5">
-          {stack.map((item) => (
-            <li
-              key={item}
-              className="rounded-full border border-border bg-surface px-3.5 py-1.5 font-mono text-xs tracking-tight text-foreground-muted"
-            >
-              {item}
-            </li>
-          ))}
-        </ul>
-      </Reveal>
+      <div className="mt-12 space-y-8">
+        {stackGroups.map((group, index) => (
+          <Reveal key={group.label} delay={0.1 + index * 0.06}>
+            <div className="border-t border-border pt-5">
+              <p className="font-mono text-xs uppercase tracking-[0.12em] text-foreground-subtle">
+                {group.label}
+              </p>
+              <ul className="mt-4 flex flex-wrap gap-2.5">
+                {group.items.map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-full border border-border bg-surface px-3.5 py-1.5 font-mono text-xs tracking-tight text-foreground-muted"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        ))}
+      </div>
     </section>
   );
 }

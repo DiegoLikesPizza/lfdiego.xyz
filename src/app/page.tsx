@@ -25,21 +25,22 @@ export default function Home() {
           <div className="lg:col-span-9">
             <Reveal>
               <p className="font-mono text-xs uppercase tracking-[0.14em] text-foreground-subtle sm:text-sm">
-                Developer / Co-Founder — Denkendorf, DE
+                Software Developer / Apprentice @ MediaMarktSaturn — Denkendorf, DE
               </p>
             </Reveal>
 
             <Reveal delay={0.06}>
               <h1 className="mt-6 font-heading text-[clamp(2.6rem,8.5vw,6.25rem)] font-semibold leading-[0.96] tracking-[-0.03em] text-foreground">
                 I build fast, <span className="text-accent">reliable</span> web
-                software for real businesses.
+                software — and I&apos;m learning to build it better.
               </h1>
             </Reveal>
 
             <Reveal delay={0.12}>
               <p className="mt-8 max-w-[52ch] text-lg leading-relaxed text-foreground-muted">
-                Developer and co-founder focused on Next.js and TypeScript —
-                shipping custom software and fast websites for real businesses.
+                Software developer focused on Next.js and TypeScript, training
+                as a Fachinformatiker (Anwendungsentwicklung) at
+                MediaMarktSaturn.
               </p>
             </Reveal>
 

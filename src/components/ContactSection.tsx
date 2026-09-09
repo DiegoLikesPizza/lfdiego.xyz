@@ -38,22 +38,23 @@ export function ContactSection() {
           <SectionIndex label="04 / Contact" />
         </Reveal>
 
-        <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="mt-8 grid gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Lead */}
           <div className="lg:col-span-5">
             <Reveal delay={0.06}>
               <h2 className="font-heading text-[clamp(2rem,4.5vw,3rem)] font-semibold leading-tight tracking-[-0.02em] text-foreground">
-                Let&apos;s work <span className="text-accent">together.</span>
+                Let&apos;s <span className="text-accent">talk.</span>
               </h2>
               <p className="mt-5 max-w-[40ch] text-lg leading-relaxed text-foreground-muted">
-                Have a project or a role in mind? Email is the fastest way to
-                reach me — I&apos;ll reply within a day or two.
+                Got a project, a question, or just want to talk shop? Email is
+                the fastest way to reach me — I&apos;ll reply within a day or
+                two.
               </p>
             </Reveal>
           </div>
 
           {/* Channels */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 lg:-mt-16">
             <Reveal delay={0.1}>
               <ul className="border-t border-border">
                 {channels.map((channel) => (

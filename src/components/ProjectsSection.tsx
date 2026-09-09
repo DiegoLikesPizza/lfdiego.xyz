@@ -18,7 +18,7 @@ const projects: Project[] = [
     num: "01",
     title: "IT Service Hecker und Göttler",
     summary:
-      "The site for our IT company — a fast, conversion-focused landing page for small and mid-sized businesses, built end to end.",
+      "The site for the IT company I co-founded — a fast, conversion-focused landing page for small and mid-sized businesses, built end to end.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
     year: "2025",
     status: "live",
@@ -38,13 +38,14 @@ const projects: Project[] = [
   },
   {
     num: "03",
-    title: "Jurassic Mahjong",
+    title: "Seminararbeit — Die Geschichte des CERN",
     summary:
-      "A dinosaur-themed Mahjong solitaire game written in Rust — tile-matching with clean, minimal graphics.",
-    tech: ["Rust"],
-    year: "2026",
-    href: "https://github.com/DiegoLikesPizza/Jurassic-Mahjong-Rust",
-    linkLabel: "View source",
+      "A companion site for my Seminararbeit on CERN — how the LEP became the LHC. Hand-built in plain HTML, CSS and JavaScript, with the full paper as a PDF.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    year: "2025",
+    status: "live",
+    href: "https://lfdiego.xyz/seminararbeit/",
+    linkLabel: "Visit site",
   },
   {
     num: "04",

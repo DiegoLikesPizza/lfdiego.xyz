@@ -22,9 +22,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const SITE_URL = "https://lfdiego.xyz";
-const TITLE = "Diego Göttler — Developer & Co-Founder";
+const TITLE = "Diego Göttler — Software Developer";
 const DESCRIPTION =
-  "Developer and co-founder building fast, reliable web apps and custom software for businesses with Next.js, TypeScript and Tailwind.";
+  "Software developer from Bavaria, training as a Fachinformatiker (Anwendungsentwicklung) at MediaMarktSaturn. I build fast, reliable web apps with Next.js, TypeScript and Tailwind.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -54,10 +54,15 @@ const personLd = {
   "@type": "Person",
   name: "Diego Göttler",
   url: SITE_URL,
-  jobTitle: "Developer & Co-Founder",
+  jobTitle: "Apprentice Software Developer (Fachinformatiker — Anwendungsentwicklung)",
   worksFor: {
     "@type": "Organization",
-    name: "IT Service Hecker und Göttler",
+    name: "MediaMarktSaturn",
+    url: "https://www.mediamarktsaturn.com",
+  },
+  alumniOf: {
+    "@type": "Organization",
+    name: "IT Service Hecker und Göttler GbR",
     url: "https://it-service-hg.de",
   },
   sameAs: [

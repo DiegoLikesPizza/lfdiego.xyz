@@ -2,7 +2,7 @@
 
 [![Deploy to production](https://github.com/DiegoLikesPizza/lfdiego.xyz/actions/workflows/deploy.yml/badge.svg)](https://github.com/DiegoLikesPizza/lfdiego.xyz/actions/workflows/deploy.yml)
 
-My personal site — a portfolio for **Diego Göttler**, developer and co-founder.
+My personal site — a portfolio for **Diego Göttler**, software developer.
 Live at **[lfdiego.xyz](https://lfdiego.xyz)**.
 
 A light, near-monochrome editorial design ("Ledger Editorial"): warm paper-white,
