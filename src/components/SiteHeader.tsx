@@ -7,11 +7,10 @@ import { cn } from "@/lib/utils";
 import { Logo } from "@/components/Logo";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
-// Section links live on the home page; `/claude` is a page of its own.
+// Absolute hrefs so the section links also work from a subpage.
 const links = [
   { id: "about", label: "About", href: "/#about" },
   { id: "work", label: "Work", href: "/#work" },
-  { id: "claude", label: "Claude", href: "/claude", page: true },
   { id: "contact", label: "Contact", href: "/#contact" },
 ];
 
@@ -46,8 +45,8 @@ export function SiteHeader() {
       { rootMargin: "-45% 0px -50% 0px" },
     );
 
-    links.forEach(({ id, page }) => {
-      const el = page ? null : document.getElementById(id);
+    links.forEach(({ id }) => {
+      const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
 
@@ -80,7 +79,7 @@ export function SiteHeader() {
                   href={link.href}
                   className={cn(
                     "relative px-3 py-2 text-sm transition-colors",
-                    (link.page ? pathname === link.href : active === link.id)
+                    active === link.id
                       ? "text-foreground"
                       : "text-foreground-muted hover:text-foreground",
                   )}
@@ -89,9 +88,7 @@ export function SiteHeader() {
                   <span
                     className={cn(
                       "absolute inset-x-3 -bottom-1 h-0.5 origin-left bg-accent transition-transform duration-300",
-                      (link.page ? pathname === link.href : active === link.id)
-                        ? "scale-x-100"
-                        : "scale-x-0",
+                      active === link.id ? "scale-x-100" : "scale-x-0",
                     )}
                   />
                 </Link>
