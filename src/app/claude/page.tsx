@@ -19,6 +19,9 @@ import {
   formatDate,
   formatNumber,
 } from "@/lib/claude-usage";
+// Hand-maintained: the account-wide figure from the Claude dashboard, which no
+// file on this machine can see. `npm run stats` never touches it.
+import account from "@/data/claude-account.json";
 
 const TITLE = "Claude stats — Diego Göttler";
 const DESCRIPTION =
@@ -69,6 +72,19 @@ export default function ClaudePage() {
             I work with Claude most days, so I counted the whole of it — every
             session, prompt and token, read straight out of my local Claude Code
             transcripts. Numbers only: no prompts, no code, no project names.
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.18}>
+          <p className="mt-10 max-w-[56ch] border-l-2 border-accent pl-5 text-foreground-muted">
+            <span className="font-heading text-2xl font-semibold text-foreground">
+              {account.approximate ? "≈" : ""}
+              {formatCompact(account.tokens)} tokens
+            </span>{" "}
+            across everything — the web app, my phone and Claude Code on every
+            machine. That figure comes from the {account.source} and is only as
+            fresh as the last time I read it ({formatDate(account.asOf)}).
+            Everything below is the slice this machine can actually measure.
           </p>
         </Reveal>
       </section>
