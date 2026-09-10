@@ -1,13 +1,13 @@
-import { claudeStats } from "@/lib/claude-stats";
+import { claudeUsage, formatCompact } from "@/lib/claude-usage";
 
 /**
- * Which Claude model co-authored what, read straight from the
- * `Co-Authored-By: Claude <model>` trailers. A single stacked bar plus a
- * labelled list — the bar is the shape, the list carries the numbers.
+ * Which models did the work, by tokens. One stacked bar for the shape,
+ * a labelled list for the numbers — the bar stays a single hue, stepping
+ * down in opacity, so nothing is identified by color alone.
  */
 export function ModelSplit() {
-  const { models, totals } = claudeStats;
-  const total = models.reduce((sum, model) => sum + model.commits, 0) || 1;
+  const { models } = claudeUsage;
+  const total = models.reduce((sum, model) => sum + model.tokens, 0) || 1;
 
   return (
     <div>
@@ -15,17 +15,15 @@ export function ModelSplit() {
         Models
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-foreground-muted">
-        Taken from the co-author trailer on each of the{" "}
-        {totals.claudeCommits} commits.
+        Share of tokens, by the model that handled the turn.
       </p>
 
       <div className="mt-6 flex h-3 w-full gap-0.5 overflow-hidden rounded-full">
         {models.map((model, index) => (
           <div
             key={model.name}
-            className="h-full first:rounded-l-full last:rounded-r-full bg-chart-claude"
-            // Later models step down in opacity so the bar stays one hue.
-            style={{ flexGrow: model.commits, opacity: 1 - index * 0.28 }}
+            className="h-full bg-chart-claude first:rounded-l-full last:rounded-r-full"
+            style={{ flexGrow: model.tokens, opacity: 1 - index * 0.22 }}
           />
         ))}
       </div>
@@ -39,12 +37,12 @@ export function ModelSplit() {
             <span className="inline-flex items-center gap-2.5 text-sm text-foreground">
               <span
                 className="h-2.5 w-2.5 shrink-0 rounded-[2px] bg-chart-claude"
-                style={{ opacity: 1 - index * 0.28 }}
+                style={{ opacity: 1 - index * 0.22 }}
               />
               {model.name}
             </span>
-            <span className="font-mono text-xs text-foreground-muted">
-              {model.commits} · {Math.round((model.commits / total) * 100)}%
+            <span className="whitespace-nowrap font-mono text-xs text-foreground-muted">
+              {formatCompact(model.tokens)} · {Math.round((model.tokens / total) * 100)}%
             </span>
           </li>
         ))}

@@ -1,106 +1,71 @@
-import { claudeStats, formatDate } from "@/lib/claude-stats";
+import { claudeUsage, formatCompact, formatDate, formatNumber } from "@/lib/claude-usage";
 
 /**
- * Commits per month, stacked: the accent segment is what Claude co-authored,
- * the neutral one is what I wrote alone. Two series, so the legend is always
- * present and every bar carries its total as a direct label — identity and
- * magnitude are never color-alone.
+ * Tokens per month — one series, so the title names it and no legend is
+ * needed. Every bar is directly labelled, and the same numbers sit in a
+ * screen-reader table below.
  */
 export function ActivityChart() {
-  const { months } = claudeStats;
-  const peak = Math.max(1, ...months.map((m) => m.claude + m.solo));
+  const { months } = claudeUsage;
+  const peak = Math.max(1, ...months.map((month) => month.tokens));
 
   return (
     <figure className="m-0">
       <figcaption className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
         <h3 className="font-heading text-lg font-semibold text-foreground">
-          Commits per month
+          Tokens per month
         </h3>
-        <ul className="flex items-center gap-4">
-          <li className="inline-flex items-center gap-2 font-mono text-xs text-foreground-muted">
-            <span className="h-2.5 w-2.5 rounded-[2px] bg-chart-claude" />
-            With Claude
-          </li>
-          <li className="inline-flex items-center gap-2 font-mono text-xs text-foreground-muted">
-            <span className="h-2.5 w-2.5 rounded-[2px] bg-chart-solo" />
-            Solo
-          </li>
-        </ul>
+        <p className="font-mono text-xs uppercase tracking-[0.12em] text-foreground-subtle">
+          Sessions below each bar
+        </p>
       </figcaption>
 
-      <div
-        className="mt-8 flex items-end gap-3 sm:gap-5"
-        style={{ height: "220px" }}
-      >
-        {months.map((month) => {
-          const total = month.claude + month.solo;
-          return (
-            <div
-              key={month.month}
-              className="group flex h-full min-w-0 flex-1 flex-col justify-end"
-            >
-              <p className="mb-2 text-center font-mono text-xs text-foreground-subtle transition-colors group-hover:text-foreground">
-                {total}
-              </p>
-
-              {/* One column = one month; the 2px gap keeps the two segments
-                  readable where they meet. */}
-              <div
-                className="flex w-full flex-col justify-end gap-0.5"
-                style={{ height: `${(total / peak) * 100}%` }}
-                title={`${formatDate(month.month)} — ${month.claude} with Claude, ${month.solo} solo`}
-              >
-                {month.claude > 0 && (
-                  <div
-                    className="w-full rounded-t-[4px] bg-chart-claude transition-opacity group-hover:opacity-85"
-                    style={{ flexGrow: month.claude }}
-                  />
-                )}
-                {month.solo > 0 && (
-                  <div
-                    className="w-full bg-chart-solo transition-opacity group-hover:opacity-85"
-                    style={{
-                      flexGrow: month.solo,
-                      borderRadius:
-                        month.claude > 0 ? "0 0 4px 4px" : "4px 4px 4px 4px",
-                    }}
-                  />
-                )}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Baseline + month labels */}
-      <div className="flex gap-3 border-t border-border pt-3 sm:gap-5">
+      <div className="mt-8 flex items-end gap-3 sm:gap-4" style={{ height: "220px" }}>
         {months.map((month) => (
-          <p
+          <div
             key={month.month}
-            className="min-w-0 flex-1 truncate text-center font-mono text-[0.7rem] uppercase tracking-[0.08em] text-foreground-subtle"
+            className="group flex h-full min-w-0 max-w-[96px] flex-1 flex-col justify-end"
+            title={`${formatDate(month.month)} — ${formatNumber(month.tokens)} tokens across ${month.sessions} ${month.sessions === 1 ? "session" : "sessions"}`}
           >
-            {formatDate(month.month)}
-          </p>
+            <p className="mb-2 text-center font-mono text-xs text-foreground-subtle transition-colors group-hover:text-foreground">
+              {formatCompact(month.tokens)}
+            </p>
+            <div
+              className="w-full rounded-t-[4px] bg-chart-claude transition-opacity group-hover:opacity-85"
+              style={{ height: `${Math.max((month.tokens / peak) * 100, 1.5)}%` }}
+            />
+          </div>
         ))}
       </div>
 
-      {/* The same numbers as a table, for screen readers and anyone who'd
-          rather read them than a bar. */}
+      <div className="flex gap-3 border-t border-border pt-3 sm:gap-4">
+        {months.map((month) => (
+          <div key={month.month} className="min-w-0 max-w-[96px] flex-1 text-center">
+            <p className="truncate font-mono text-[0.7rem] uppercase tracking-[0.08em] text-foreground-subtle">
+              {formatDate(month.month)}
+            </p>
+            <p className="mt-1 font-mono text-[0.7rem] text-foreground-muted">
+              {month.sessions}
+            </p>
+          </div>
+        ))}
+      </div>
+
       <table className="sr-only">
-        <caption>Commits per month, split by whether Claude co-authored them</caption>
+        <caption>Tokens and sessions per month</caption>
         <thead>
           <tr>
             <th scope="col">Month</th>
-            <th scope="col">With Claude</th>
-            <th scope="col">Solo</th>
+            <th scope="col">Tokens</th>
+            <th scope="col">Sessions</th>
           </tr>
         </thead>
         <tbody>
           {months.map((month) => (
             <tr key={month.month}>
               <th scope="row">{formatDate(month.month)}</th>
-              <td>{month.claude}</td>
-              <td>{month.solo}</td>
+              <td>{formatNumber(month.tokens)}</td>
+              <td>{month.sessions}</td>
             </tr>
           ))}
         </tbody>
