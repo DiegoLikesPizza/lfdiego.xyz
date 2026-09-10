@@ -74,19 +74,6 @@ export default function ClaudePage() {
             transcripts. Numbers only: no prompts, no code, no project names.
           </p>
         </Reveal>
-
-        <Reveal delay={0.18}>
-          <p className="mt-10 max-w-[56ch] border-l-2 border-accent pl-5 text-foreground-muted">
-            <span className="font-heading text-2xl font-semibold text-foreground">
-              {account.approximate ? "≈" : ""}
-              {formatCompact(account.tokens)} tokens
-            </span>{" "}
-            across everything — the web app, my phone and Claude Code on every
-            machine. That figure comes from the {account.source} and is only as
-            fresh as the last time I read it ({formatDate(account.asOf)}).
-            Everything below is the slice this machine can actually measure.
-          </p>
-        </Reveal>
       </section>
 
       {/* Headline numbers */}
@@ -105,9 +92,9 @@ export default function ClaudePage() {
             },
             {
               icon: Sigma,
-              value: formatCompact(totals.tokens),
+              value: `${account.approximate ? "~" : ""}${formatCompact(account.tokens)}`,
               label: "Tokens",
-              note: `${formatNumber(totals.tokens)} in and out, from Claude Code on this machine.`,
+              note: `Across web, phone and every machine, per the ${account.source} on ${formatDate(account.asOf)}. ${formatCompact(totals.tokens)} of that is Claude Code on this PC.`,
             },
             {
               icon: MessagesSquare,
