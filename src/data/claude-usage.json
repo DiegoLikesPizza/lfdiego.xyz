@@ -1,0 +1,32 @@
+{
+  "generatedAt": "2026-09-10T10:25:16.855Z",
+  "totals": {
+    "sessions": 1,
+    "prompts": 18,
+    "assistantMessages": 113,
+    "toolCalls": 53,
+    "daysActive": 1,
+    "tokens": 13608425,
+    "input": 226,
+    "output": 46389,
+    "cacheWrite": 207019,
+    "cacheRead": 13354791,
+    "thinking": 10405,
+    "firstUsed": "2026-09-10",
+    "lastUsed": "2026-09-10"
+  },
+  "models": [
+    {
+      "name": "Opus 5",
+      "messages": 113,
+      "tokens": 13608425
+    }
+  ],
+  "months": [
+    {
+      "month": "2026-09",
+      "tokens": 13608425,
+      "sessions": 1
+    }
+  ]
+}
