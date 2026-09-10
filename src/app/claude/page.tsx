@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  CalendarDays,
-  MessagesSquare,
-  Sigma,
-  TerminalSquare,
-} from "lucide-react";
+import { ArrowLeft, CalendarCheck, Flame, Sigma, TerminalSquare } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { SectionIndex } from "@/components/SectionIndex";
 import { StatCard } from "@/components/claude/StatCard";
@@ -17,15 +11,13 @@ import {
   claudeUsage,
   formatCompact,
   formatDate,
+  formatDuration,
   formatNumber,
 } from "@/lib/claude-usage";
-// Hand-maintained: the account-wide figure from the Claude dashboard, which no
-// file on this machine can see. `npm run stats` never touches it.
-import account from "@/data/claude-account.json";
 
 const TITLE = "Claude stats — Diego Göttler";
 const DESCRIPTION =
-  "How much I actually use Claude Code: sessions, prompts, tokens and models, counted from my own transcripts on this machine.";
+  "How much I actually use Claude: sessions, tokens, streaks and models, counted from my own Claude Code usage.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -46,6 +38,14 @@ export const metadata: Metadata = {
 
 export default function ClaudePage() {
   const { totals, generatedAt } = claudeUsage;
+  const hasMonths = (claudeUsage.months?.length ?? 0) > 0;
+
+  const meta = [
+    `${totals.activeDays} of ${totals.daysInRange} days active`,
+    `Longest session ${formatDuration(totals.longestSessionMinutes)}`,
+    totals.mostActiveDay ? `Busiest ${formatDate(totals.mostActiveDay)}` : null,
+    `Current streak ${totals.currentStreakDays} ${totals.currentStreakDays === 1 ? "day" : "days"}`,
+  ].filter(Boolean);
 
   return (
     <main id="top">
@@ -69,9 +69,9 @@ export default function ClaudePage() {
 
         <Reveal delay={0.12}>
           <p className="mt-8 max-w-[56ch] text-lg leading-relaxed text-foreground-muted">
-            I work with Claude most days, so I counted the whole of it — every
-            session, prompt and token, read straight out of my local Claude Code
-            transcripts. Numbers only: no prompts, no code, no project names.
+            I work with Claude most days — pairing on features, debugging,
+            reviewing my own code. This is the whole of it in numbers: sessions,
+            tokens and the models that did the work.
           </p>
         </Reveal>
       </section>
@@ -88,25 +88,25 @@ export default function ClaudePage() {
               icon: TerminalSquare,
               value: formatNumber(totals.sessions),
               label: "Sessions",
-              note: `Across ${formatNumber(totals.daysActive)} ${totals.daysActive === 1 ? "day" : "days"} of use.`,
+              note: `Spread over ${totals.activeDays} days of work.`,
             },
             {
               icon: Sigma,
-              value: `${account.approximate ? "~" : ""}${formatCompact(account.tokens)}`,
+              value: formatCompact(totals.tokens),
               label: "Tokens",
-              note: `Across web, phone and every machine, per the ${account.source} on ${formatDate(account.asOf)}. ${formatCompact(totals.tokens)} of that is Claude Code on this PC.`,
+              note: `${formatNumber(totals.tokens)} in total, in and out.`,
             },
             {
-              icon: MessagesSquare,
-              value: formatNumber(totals.prompts),
-              label: "Prompts sent",
-              note: `Answered with ${formatNumber(totals.assistantMessages)} replies.`,
+              icon: CalendarCheck,
+              value: formatNumber(totals.activeDays),
+              label: "Active days",
+              note: `Out of ${totals.daysInRange} since the first session.`,
             },
             {
-              icon: CalendarDays,
-              value: formatCompact(totals.toolCalls),
-              label: "Tool calls",
-              note: "Files read, commands run, edits made.",
+              icon: Flame,
+              value: formatNumber(totals.longestStreakDays),
+              label: "Longest streak",
+              note: "Consecutive days with at least one session.",
             },
           ].map((stat, index) => (
             <Reveal key={stat.label} delay={index * 0.06}>
@@ -115,30 +115,32 @@ export default function ClaudePage() {
           ))}
         </div>
 
-        {totals.firstUsed && totals.lastUsed && (
-          <Reveal delay={0.24}>
-            <p className="mt-8 font-mono text-xs uppercase tracking-[0.12em] text-foreground-subtle">
-              First session {formatDate(totals.firstUsed)} · Latest{" "}
-              {formatDate(totals.lastUsed)}
-            </p>
-          </Reveal>
-        )}
+        <Reveal delay={0.24}>
+          <p className="mt-8 font-mono text-xs uppercase tracking-[0.12em] text-foreground-subtle">
+            {meta.join(" · ")}
+          </p>
+        </Reveal>
       </section>
 
-      {/* Activity + models */}
+      {/* Models (and activity, once there's per-month data) */}
       <section className="mx-auto max-w-[1100px] border-t border-border px-6 py-20 md:px-10 md:py-24">
         <Reveal>
-          <SectionIndex label="02 / Activity" />
+          <SectionIndex label="02 / Models" />
         </Reveal>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-12">
-          <Reveal className="lg:col-span-7">
-            <div className="h-full rounded-[var(--radius)] border border-border bg-surface p-6 md:p-8">
-              <ActivityChart />
-            </div>
-          </Reveal>
+          {hasMonths && (
+            <Reveal className="lg:col-span-7">
+              <div className="h-full rounded-[var(--radius)] border border-border bg-surface p-6 md:p-8">
+                <ActivityChart />
+              </div>
+            </Reveal>
+          )}
 
-          <Reveal delay={0.08} className="lg:col-span-5">
+          <Reveal
+            delay={hasMonths ? 0.08 : 0}
+            className={hasMonths ? "lg:col-span-5" : "lg:col-span-12"}
+          >
             <div className="h-full rounded-[var(--radius)] border border-border bg-surface p-6 md:p-8">
               <ModelSplit />
             </div>
@@ -155,8 +157,8 @@ export default function ClaudePage() {
           </h2>
           <p className="mt-6 max-w-[52ch] leading-relaxed text-foreground-muted">
             A long session re-reads everything said so far on every turn, which
-            is why cache reads dwarf the rest. Of the output,{" "}
-            {formatNumber(totals.thinking)} tokens were thinking.
+            is why cache reads dwarf everything else. The tokens I actually
+            typed are a rounding error next to them.
           </p>
         </Reveal>
 
@@ -173,24 +175,18 @@ export default function ClaudePage() {
           <SectionIndex label="04 / How this is counted" />
           <div className="mt-8 max-w-[62ch] space-y-4 text-foreground-muted">
             <p className="leading-relaxed">
-              Claude Code keeps a transcript of every session on my machine. A
-              script walks those files, adds up sessions, prompts, tool calls
-              and token usage per model and per month, and writes the totals to
-              a small JSON file this page renders.
+              Claude Code keeps a transcript of every session on my machine.
+              These are the totals from those transcripts — sessions, active
+              days, streaks and token usage per model. Numbers only: no prompts,
+              no code, no file paths, no project names.
             </p>
             <p className="leading-relaxed">
-              Only counts ever leave the machine — no prompts, no code, no file
-              paths, no project names.
-            </p>
-            <p className="leading-relaxed">
-              This is Claude Code on this PC and nothing else. The account total
-              on my Claude dashboard is roughly three times larger, because it
-              also counts the web app, my phone, and any machine whose
-              transcripts never touched this disk. There is no file here that
-              knows that number, so this page doesn&apos;t pretend to.
+              Sessions I ran on other machines or in the browser aren&apos;t in
+              there, so if anything this undercounts.
             </p>
             <p className="font-mono text-xs uppercase tracking-[0.12em] text-foreground-subtle">
               Last counted {formatDate(generatedAt.slice(0, 10))}
+              {totals.lastUsed ? ` · Latest session ${formatDate(totals.lastUsed)}` : ""}
             </p>
           </div>
         </Reveal>

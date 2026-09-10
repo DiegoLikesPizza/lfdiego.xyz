@@ -1,27 +1,39 @@
 import data from "@/data/claude-usage.json";
 
+export interface ClaudeModelUsage {
+  name: string;
+  /** Share of all tokens, in percent, as reported. */
+  share: number;
+  tokens: number;
+  input: number;
+  output: number;
+  cacheRead: number;
+  cacheWrite: number;
+}
+
 export interface ClaudeUsage {
-  /** ISO timestamp of the last `npm run stats` run. */
+  /** When these numbers were last counted. */
   generatedAt: string;
   totals: {
     sessions: number;
-    /** Prompts I typed (tool results and sub-agent turns don't count). */
-    prompts: number;
-    assistantMessages: number;
-    toolCalls: number;
-    daysActive: number;
-    /** input + output + cache write + cache read. */
+    /** input + output + cache read + cache write. */
     tokens: number;
     input: number;
     output: number;
-    cacheWrite: number;
     cacheRead: number;
-    thinking: number;
-    firstUsed: string | null;
+    cacheWrite: number;
+    activeDays: number;
+    /** Days between the first and the last session, inclusive. */
+    daysInRange: number;
+    longestStreakDays: number;
+    currentStreakDays: number;
+    longestSessionMinutes: number;
+    mostActiveDay: string | null;
     lastUsed: string | null;
   };
-  models: { name: string; messages: number; tokens: number }[];
-  months: { month: string; tokens: number; sessions: number }[];
+  models: ClaudeModelUsage[];
+  /** Optional — only present once a run has per-month data to show. */
+  months?: { month: string; tokens: number; sessions: number }[];
 }
 
 export const claudeUsage = data as ClaudeUsage;
@@ -31,13 +43,22 @@ export function formatNumber(value: number) {
   return value.toLocaleString("en-US");
 }
 
-/** 13608425 → "13.6M" — for numbers too big to read digit by digit. */
+/** 7234162400 → "7.2B" — for numbers too big to read digit by digit. */
 export function formatCompact(value: number) {
   if (value >= 1_000_000_000) return `${(value / 1_000_000_000).toFixed(1)}B`;
   if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}M`;
   if (value >= 10_000) return `${Math.round(value / 1000)}K`;
   if (value >= 1_000) return `${(value / 1000).toFixed(1)}K`;
   return formatNumber(value);
+}
+
+/** 30740 → "21d 8h" — the long ones are what's interesting. */
+export function formatDuration(minutes: number) {
+  const days = Math.floor(minutes / 1440);
+  const hours = Math.floor((minutes % 1440) / 60);
+  if (days > 0) return `${days}d ${hours}h`;
+  if (hours > 0) return `${hours}h ${minutes % 60}m`;
+  return `${minutes}m`;
 }
 
 /** "2026-09" → "Sep 2026"; "2026-09-09" → "9 Sep 2026". */

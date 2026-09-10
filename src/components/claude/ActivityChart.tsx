@@ -6,7 +6,7 @@ import { claudeUsage, formatCompact, formatDate, formatNumber } from "@/lib/clau
  * screen-reader table below.
  */
 export function ActivityChart() {
-  const { months } = claudeUsage;
+  const months = claudeUsage.months ?? [];
   const peak = Math.max(1, ...months.map((month) => month.tokens));
 
   return (
