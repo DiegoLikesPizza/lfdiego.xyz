@@ -1,0 +1,122 @@
+{
+  "generatedAt": "2026-09-10T07:24:30.700Z",
+  "repo": "DiegoLikesPizza/lfdiego.xyz",
+  "totals": {
+    "commits": 16,
+    "claudeCommits": 5,
+    "claudeShare": 31,
+    "linesAdded": 468,
+    "linesRemoved": 112,
+    "filesTouched": 20,
+    "firstCommit": "2026-06-13",
+    "latestCommit": "2026-09-09"
+  },
+  "models": [
+    {
+      "name": "Claude Opus 4.8",
+      "commits": 4
+    },
+    {
+      "name": "Claude Opus 5",
+      "commits": 1
+    }
+  ],
+  "months": [
+    {
+      "month": "2025-11",
+      "claude": 0,
+      "solo": 7
+    },
+    {
+      "month": "2026-01",
+      "claude": 0,
+      "solo": 3
+    },
+    {
+      "month": "2026-06",
+      "claude": 4,
+      "solo": 1
+    },
+    {
+      "month": "2026-09",
+      "claude": 1,
+      "solo": 0
+    }
+  ],
+  "topFiles": [
+    {
+      "file": "src/app/layout.tsx",
+      "commits": 3
+    },
+    {
+      "file": "README.md",
+      "commits": 2
+    },
+    {
+      "file": "src/app/page.tsx",
+      "commits": 2
+    },
+    {
+      "file": "src/components/AboutSection.tsx",
+      "commits": 2
+    },
+    {
+      "file": "src/components/ContactSection.tsx",
+      "commits": 2
+    },
+    {
+      "file": ".github/workflows/deploy.yml",
+      "commits": 1
+    },
+    {
+      "file": "public/lfd-logo.svg",
+      "commits": 1
+    },
+    {
+      "file": "src/app/apple-icon.png",
+      "commits": 1
+    }
+  ],
+  "recent": [
+    {
+      "hash": "e363af0",
+      "date": "2026-09-09",
+      "subject": "content: apprenticeship at MediaMarktSaturn, retire GbR framing",
+      "model": "Claude Opus 5",
+      "added": 117,
+      "removed": 53
+    },
+    {
+      "hash": "dc1ccb9",
+      "date": "2026-06-14",
+      "subject": "feat(seo): sitemap, robots, richer metadata + Person JSON-LD",
+      "model": "Claude Opus 4.8",
+      "added": 74,
+      "removed": 3
+    },
+    {
+      "hash": "33120b7",
+      "date": "2026-06-14",
+      "subject": "feat: dark mode toggle + lfd brand logo",
+      "model": "Claude Opus 4.8",
+      "added": 167,
+      "removed": 55
+    },
+    {
+      "hash": "114ab5c",
+      "date": "2026-06-14",
+      "subject": "docs: write a proper README with deploy badge",
+      "model": "Claude Opus 4.8",
+      "added": 70,
+      "removed": 1
+    },
+    {
+      "hash": "521f1e1",
+      "date": "2026-06-13",
+      "subject": "ci: auto-deploy to production on push to main",
+      "model": "Claude Opus 4.8",
+      "added": 40,
+      "removed": 0
+    }
+  ]
+}
