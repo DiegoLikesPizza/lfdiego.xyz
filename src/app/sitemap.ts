@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: "https://lfdiego.xyz/claude",
+      url: "https://lfdiego.xyz/claude/",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.6,
