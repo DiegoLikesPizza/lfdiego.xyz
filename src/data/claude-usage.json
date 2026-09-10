@@ -1,62 +1,48 @@
 {
-  "generatedAt": "2026-09-10T11:48:08.083Z",
+  "generatedAt": "2026-09-10T00:00:00.000Z",
   "totals": {
-    "sessions": 60,
-    "prompts": 613,
-    "assistantMessages": 8625,
-    "toolCalls": 3770,
-    "daysActive": 41,
-    "tokens": 2134557648,
-    "input": 46896,
-    "output": 5825636,
-    "cacheWrite": 27392488,
-    "cacheRead": 2101292628,
-    "thinking": 978162,
-    "firstUsed": "2026-06-06",
+    "sessions": 75,
+    "tokens": 7234162400,
+    "input": 162400,
+    "output": 24500000,
+    "cacheRead": 7100000000,
+    "cacheWrite": 109500000,
+    "activeDays": 43,
+    "daysInRange": 61,
+    "longestStreakDays": 17,
+    "currentStreakDays": 2,
+    "longestSessionMinutes": 30740,
+    "mostActiveDay": "2026-07-25",
     "lastUsed": "2026-09-10"
   },
   "models": [
     {
       "name": "Opus 5",
-      "messages": 7269,
-      "tokens": 2004907122
+      "share": 77.6,
+      "tokens": 5596421100,
+      "input": 121100,
+      "output": 16900000,
+      "cacheRead": 5500000000,
+      "cacheWrite": 79400000
     },
     {
-      "name": "Sonnet 4.6",
-      "messages": 1098,
-      "tokens": 109211650
+      "name": "Opus 4.8",
+      "share": 22.3,
+      "tokens": 1637322500,
+      "input": 22500,
+      "output": 7600000,
+      "cacheRead": 1600000000,
+      "cacheWrite": 29700000
     },
     {
       "name": "Sonnet 5",
-      "messages": 148,
-      "tokens": 12722261
-    },
-    {
-      "name": "Fable 5",
-      "messages": 74,
-      "tokens": 7716615
+      "share": 0.1,
+      "tokens": 6181900,
+      "input": 18700,
+      "output": 21500,
+      "cacheRead": 5800000,
+      "cacheWrite": 341700
     }
   ],
-  "months": [
-    {
-      "month": "2026-06",
-      "tokens": 94596855,
-      "sessions": 10
-    },
-    {
-      "month": "2026-07",
-      "tokens": 466715627,
-      "sessions": 5
-    },
-    {
-      "month": "2026-08",
-      "tokens": 1229943493,
-      "sessions": 42
-    },
-    {
-      "month": "2026-09",
-      "tokens": 343301673,
-      "sessions": 5
-    }
-  ]
+  "months": []
 }
