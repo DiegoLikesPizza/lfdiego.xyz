@@ -22,7 +22,7 @@ import {
 
 const TITLE = "Claude stats — Diego Göttler";
 const DESCRIPTION =
-  "How much I actually use Claude: sessions, prompts, tokens and models, counted from my own Claude Code transcripts.";
+  "How much I actually use Claude Code: sessions, prompts, tokens and models, counted from my own transcripts on this machine.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -91,7 +91,7 @@ export default function ClaudePage() {
               icon: Sigma,
               value: formatCompact(totals.tokens),
               label: "Tokens",
-              note: `${formatNumber(totals.tokens)} in total, in and out.`,
+              note: `${formatNumber(totals.tokens)} in and out, from Claude Code on this machine.`,
             },
             {
               icon: MessagesSquare,
@@ -177,8 +177,14 @@ export default function ClaudePage() {
             </p>
             <p className="leading-relaxed">
               Only counts ever leave the machine — no prompts, no code, no file
-              paths, no project names. Sessions I ran on other machines or in
-              the browser aren&apos;t included, so if anything this undercounts.
+              paths, no project names.
+            </p>
+            <p className="leading-relaxed">
+              This is Claude Code on this PC and nothing else. The account total
+              on my Claude dashboard is roughly three times larger, because it
+              also counts the web app, my phone, and any machine whose
+              transcripts never touched this disk. There is no file here that
+              knows that number, so this page doesn&apos;t pretend to.
             </p>
             <p className="font-mono text-xs uppercase tracking-[0.12em] text-foreground-subtle">
               Last counted {formatDate(generatedAt.slice(0, 10))}
