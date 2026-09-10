@@ -19,6 +19,24 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = resolve(ROOT, "src/data/claude-usage.json");
 const CLAUDE_DIR = process.env.CLAUDE_CONFIG_DIR ?? join(homedir(), ".claude");
 
+/**
+ * Claude Code writes transcripts under two roots, not one.
+ *
+ * ~/.claude/projects holds ordinary CLI and desktop sessions. Agent-mode
+ * sessions live under the desktop app's own data directory instead, each with a
+ * nested .claude/projects of its own — scanning only the first root silently
+ * dropped fifteen sessions here.
+ *
+ * audit.jsonl sits alongside them and is a different shape, so it is skipped by
+ * name rather than parsed and ignored.
+ */
+const ROOTS = [
+  join(CLAUDE_DIR, "projects"),
+  join(homedir(), "AppData", "Roaming", "Claude", "local-agent-mode-sessions"),
+  join(homedir(), "Library", "Application Support", "Claude", "local-agent-mode-sessions"),
+  join(homedir(), ".config", "Claude", "local-agent-mode-sessions"),
+];
+
 function findTranscripts(dir) {
   let found = [];
   let entries;
@@ -30,14 +48,17 @@ function findTranscripts(dir) {
   for (const entry of entries) {
     const path = join(dir, entry.name);
     if (entry.isDirectory()) found = found.concat(findTranscripts(path));
-    else if (entry.name.endsWith(".jsonl")) found.push(path);
+    else if (entry.name.endsWith(".jsonl") && entry.name !== "audit.jsonl") found.push(path);
   }
   return found;
 }
 
-const files = findTranscripts(join(CLAUDE_DIR, "projects"));
+// A message can appear in more than one root once a session has been resumed,
+// so the id-level dedupe below is what keeps the total honest.
+const files = ROOTS.flatMap((root) => findTranscripts(root));
 if (files.length === 0) {
-  console.error(`No transcripts found under ${join(CLAUDE_DIR, "projects")}.`);
+  console.error("No transcripts found under any of:");
+  for (const root of ROOTS) console.error(`  ${root}`);
   console.error("Run this on the machine where you use Claude Code, or set CLAUDE_CONFIG_DIR.");
   process.exit(1);
 }

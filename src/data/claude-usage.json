@@ -1,46 +1,61 @@
 {
-  "generatedAt": "2026-09-10T11:39:30.007Z",
+  "generatedAt": "2026-09-10T11:48:08.083Z",
   "totals": {
-    "sessions": 45,
-    "prompts": 484,
-    "assistantMessages": 7311,
-    "toolCalls": 3201,
-    "daysActive": 28,
-    "tokens": 1995875291,
-    "input": 20838,
-    "output": 4970523,
-    "cacheWrite": 23112391,
-    "cacheRead": 1967771539,
-    "thinking": 972973,
-    "firstUsed": "2026-07-29",
+    "sessions": 60,
+    "prompts": 613,
+    "assistantMessages": 8625,
+    "toolCalls": 3770,
+    "daysActive": 41,
+    "tokens": 2134557648,
+    "input": 46896,
+    "output": 5825636,
+    "cacheWrite": 27392488,
+    "cacheRead": 2101292628,
+    "thinking": 978162,
+    "firstUsed": "2026-06-06",
     "lastUsed": "2026-09-10"
   },
   "models": [
     {
       "name": "Opus 5",
-      "messages": 7252,
-      "tokens": 1992417549
+      "messages": 7269,
+      "tokens": 2004907122
+    },
+    {
+      "name": "Sonnet 4.6",
+      "messages": 1098,
+      "tokens": 109211650
     },
     {
       "name": "Sonnet 5",
-      "messages": 43,
-      "tokens": 3457742
+      "messages": 148,
+      "tokens": 12722261
+    },
+    {
+      "name": "Fable 5",
+      "messages": 74,
+      "tokens": 7716615
     }
   ],
   "months": [
     {
+      "month": "2026-06",
+      "tokens": 94596855,
+      "sessions": 10
+    },
+    {
       "month": "2026-07",
-      "tokens": 450580560,
-      "sessions": 1
+      "tokens": 466715627,
+      "sessions": 5
     },
     {
       "month": "2026-08",
-      "tokens": 1214482631,
-      "sessions": 40
+      "tokens": 1229943493,
+      "sessions": 42
     },
     {
       "month": "2026-09",
-      "tokens": 330812100,
+      "tokens": 343301673,
       "sessions": 5
     }
   ]
