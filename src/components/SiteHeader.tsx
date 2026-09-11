@@ -7,10 +7,12 @@ import { cn } from "@/lib/utils";
 import { Logo } from "@/components/Logo";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
-// Absolute hrefs so the section links also work from a subpage.
+// Absolute hrefs so the section links also work from a subpage. `/wiki` is a
+// page of its own with sub-pages, so it is active on any path under it.
 const links = [
   { id: "about", label: "About", href: "/#about" },
   { id: "work", label: "Work", href: "/#work" },
+  { id: "wiki", label: "Wiki", href: "/wiki", page: true },
   { id: "contact", label: "Contact", href: "/#contact" },
 ];
 
@@ -79,7 +81,7 @@ export function SiteHeader() {
                   href={link.href}
                   className={cn(
                     "relative px-3 py-2 text-sm transition-colors",
-                    active === link.id
+                    (link.page ? pathname.startsWith(link.href) : active === link.id)
                       ? "text-foreground"
                       : "text-foreground-muted hover:text-foreground",
                   )}
@@ -88,7 +90,9 @@ export function SiteHeader() {
                   <span
                     className={cn(
                       "absolute inset-x-3 -bottom-1 h-0.5 origin-left bg-accent transition-transform duration-300",
-                      active === link.id ? "scale-x-100" : "scale-x-0",
+                      (link.page ? pathname.startsWith(link.href) : active === link.id)
+                        ? "scale-x-100"
+                        : "scale-x-0",
                     )}
                   />
                 </Link>
