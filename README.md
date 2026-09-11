@@ -47,6 +47,8 @@ src/
 │  └─ icon.svg          # favicon (DG monogram)
 ├─ components/
 │  ├─ SiteHeader.tsx    # sticky nav with active-section underline
+│  ├─ ResourcesMenu.tsx # desktop "Resources" dropdown (wiki, Claude stats, apps)
+│  ├─ MobileMenu.tsx    # menu button + slide-in side panel below the sm breakpoint
 │  ├─ Monogram.tsx      # "DG" brand mark
 │  ├─ SectionIndex.tsx  # "01 / About" editorial section labels
 │  ├─ Reveal.tsx        # scroll reveal (honors prefers-reduced-motion)

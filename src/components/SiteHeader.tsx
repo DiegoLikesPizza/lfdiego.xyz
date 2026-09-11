@@ -6,15 +6,38 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/Logo";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { ResourcesMenu } from "@/components/ResourcesMenu";
+import { MobileMenu } from "@/components/MobileMenu";
 
-// Absolute hrefs so the section links also work from a subpage. `/wiki` is a
-// page of its own with sub-pages, so it is active on any path under it.
+// Absolute hrefs so the section links also work from a subpage. Standalone
+// pages (wiki, Claude stats, the apps) live in the Resources menu instead.
 const links = [
   { id: "about", label: "About", href: "/#about" },
   { id: "work", label: "Work", href: "/#work" },
-  { id: "wiki", label: "Wiki", href: "/wiki", page: true },
   { id: "contact", label: "Contact", href: "/#contact" },
 ];
+
+function NavItem({ link, active }: { link: (typeof links)[number]; active: boolean }) {
+  return (
+    <li>
+      <Link
+        href={link.href}
+        className={cn(
+          "relative px-3 py-2 text-sm transition-colors",
+          active ? "text-foreground" : "text-foreground-muted hover:text-foreground",
+        )}
+      >
+        {link.label}
+        <span
+          className={cn(
+            "absolute inset-x-3 -bottom-1 h-0.5 origin-left bg-accent transition-transform duration-300",
+            active ? "scale-x-100" : "scale-x-0",
+          )}
+        />
+      </Link>
+    </li>
+  );
+}
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -55,6 +78,10 @@ export function SiteHeader() {
     return () => observer.disconnect();
   }, [isHome]);
 
+  // Desktop order: About, Work, Resources ▾, Contact.
+  const sectionLinks = links.filter((link) => link.id !== "contact");
+  const contactLink = links.find((link) => link.id === "contact")!;
+
   return (
     <header
       className={cn(
@@ -73,41 +100,27 @@ export function SiteHeader() {
           <Logo size="sm" />
         </Link>
 
-        <div className="flex items-center gap-1 sm:gap-2">
+        <div className="flex items-center gap-2">
           <ul className="hidden items-center gap-1 sm:flex">
-            {links.map((link) => (
-              <li key={link.id}>
-                <Link
-                  href={link.href}
-                  className={cn(
-                    "relative px-3 py-2 text-sm transition-colors",
-                    (link.page ? pathname.startsWith(link.href) : active === link.id)
-                      ? "text-foreground"
-                      : "text-foreground-muted hover:text-foreground",
-                  )}
-                >
-                  {link.label}
-                  <span
-                    className={cn(
-                      "absolute inset-x-3 -bottom-1 h-0.5 origin-left bg-accent transition-transform duration-300",
-                      (link.page ? pathname.startsWith(link.href) : active === link.id)
-                        ? "scale-x-100"
-                        : "scale-x-0",
-                    )}
-                  />
-                </Link>
-              </li>
+            {sectionLinks.map((link) => (
+              <NavItem key={link.id} link={link} active={active === link.id} />
             ))}
+            <li>
+              <ResourcesMenu />
+            </li>
+            <NavItem link={contactLink} active={active === contactLink.id} />
           </ul>
 
           <ThemeToggle />
 
           <Link
             href="/#contact"
-            className="ml-1 inline-flex items-center rounded-[var(--radius)] border border-accent/45 px-3.5 py-1.5 text-sm font-medium text-accent-hover transition-colors hover:bg-accent hover:text-accent-foreground"
+            className="ml-1 hidden items-center rounded-[var(--radius)] border border-accent/45 px-3.5 py-1.5 text-sm font-medium text-accent-hover transition-colors hover:bg-accent hover:text-accent-foreground sm:inline-flex"
           >
             Get in touch
           </Link>
+
+          <MobileMenu links={links} />
         </div>
       </nav>
     </header>
