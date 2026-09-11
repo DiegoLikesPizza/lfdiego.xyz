@@ -101,7 +101,7 @@ export default function WikiPage() {
                   </p>
 
                   <ul className="mt-5 flex flex-wrap gap-1.5">
-                    {guide.sections.map((section) => (
+                    {guide.sections.slice(0, 7).map((section) => (
                       <li
                         key={section.id}
                         className="rounded-full border border-border bg-background px-2.5 py-1 font-mono text-[0.68rem] text-foreground-muted"
@@ -109,6 +109,11 @@ export default function WikiPage() {
                         {section.label}
                       </li>
                     ))}
+                    {guide.sections.length > 7 && (
+                      <li className="rounded-full border border-dashed border-border px-2.5 py-1 font-mono text-[0.68rem] text-foreground-subtle">
+                        +{guide.sections.length - 7} more
+                      </li>
+                    )}
                   </ul>
 
                   <span className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-medium text-accent-hover">

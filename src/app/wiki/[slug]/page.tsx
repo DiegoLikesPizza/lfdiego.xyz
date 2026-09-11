@@ -69,7 +69,7 @@ export default async function GuidePage({ params }: Props) {
             <span className="inline-flex h-8 w-8 items-center justify-center rounded-[8px] border border-border bg-surface text-accent">
               <guide.icon className="h-4 w-4" strokeWidth={1.75} />
             </span>
-            Guide {pad(position + 1)} · {guide.kicker}
+            Guide {pad(position + 1)} · {guide.kicker} · {guide.sections.length} sections
           </p>
           <h1 className="mt-6 font-heading text-[clamp(2.4rem,7vw,4.5rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-foreground">
             {guide.title}

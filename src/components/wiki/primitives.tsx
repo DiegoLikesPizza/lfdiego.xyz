@@ -263,7 +263,18 @@ export function DataTable({
   return (
     <Reveal className="min-w-0">
       <div className="overflow-x-auto rounded-[var(--radius)] border border-border bg-surface">
-        <table className="w-full min-w-[560px] border-collapse text-left text-sm">
+        <table
+          className={cn(
+            "w-full border-collapse text-left text-sm",
+            // Scroll only when the columns genuinely can't fit; narrow tables
+            // should shrink into half-width layouts instead.
+            head.length >= 4
+              ? "min-w-[560px]"
+              : head.length === 3
+                ? "min-w-[420px]"
+                : "min-w-[280px]",
+          )}
+        >
           <caption className="sr-only">{caption}</caption>
           <thead>
             <tr className="border-b border-border bg-background-secondary">
@@ -449,6 +460,89 @@ export function AnnotatedCode({
         ))}
       </ol>
     </div>
+  );
+}
+
+/** Side-by-side “instead of → prefer” pairs. */
+export function DoDont({
+  items,
+  code = true,
+}: {
+  items: { dont: string; do: string; why?: ReactNode }[];
+  code?: boolean;
+}) {
+  const Body = ({ text, strong }: { text: string; strong?: boolean }) =>
+    code ? (
+      <pre
+        className={cn(
+          "mt-1.5 overflow-x-auto whitespace-pre font-mono text-[0.78rem] leading-relaxed",
+          strong ? "text-foreground" : "text-foreground-muted",
+        )}
+      >
+        {text}
+      </pre>
+    ) : (
+      <p
+        className={cn(
+          "mt-1.5 text-sm leading-relaxed",
+          strong ? "text-foreground" : "text-foreground-muted",
+        )}
+      >
+        {text}
+      </p>
+    );
+
+  return (
+    <Reveal className="min-w-0">
+      <ul className="space-y-3">
+        {items.map((item, index) => (
+          <li
+            key={index}
+            className="grid grid-cols-1 gap-3 rounded-[var(--radius)] border border-border bg-surface p-4 md:grid-cols-2 md:gap-5"
+          >
+            <div className="min-w-0">
+              <p className="font-mono text-[0.7rem] uppercase tracking-[0.12em] text-foreground-subtle">
+                Instead of
+              </p>
+              <Body text={item.dont} />
+            </div>
+            <div className="min-w-0 border-t border-border pt-3 md:border-t-0 md:border-l md:pl-5 md:pt-0">
+              <p className="font-mono text-[0.7rem] uppercase tracking-[0.12em] text-accent-hover">
+                Prefer
+              </p>
+              <Body text={item.do} strong />
+              {item.why && (
+                <p className="mt-2 text-xs leading-relaxed text-foreground-muted">
+                  {item.why}
+                </p>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </Reveal>
+  );
+}
+
+/** A two-column list of terms and short definitions. */
+export function Glossary({
+  terms,
+}: {
+  terms: { term: string; def: ReactNode }[];
+}) {
+  return (
+    <Reveal>
+      <dl className="grid grid-cols-1 gap-x-10 gap-y-5 sm:grid-cols-2">
+        {terms.map((item) => (
+          <div key={item.term} className="border-t border-border pt-4">
+            <dt className="font-mono text-sm text-foreground">{item.term}</dt>
+            <dd className="mt-1 text-sm leading-relaxed text-foreground-muted">
+              {item.def}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </Reveal>
   );
 }
 
