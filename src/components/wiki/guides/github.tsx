@@ -71,8 +71,8 @@ function ForkDiagram() {
         3 · push
       </text>
 
-      {/* 4 pull request */}
-      <path d="M490 58 C490 10 150 10 150 54" fill="none" strokeWidth="2" markerEnd="url(#gh-arrow-accent)" className="stroke-accent" />
+      {/* 4 pull request — ends in a straight drop so the arrowhead lines up with the curve */}
+      <path d="M490 58 C490 10 150 10 150 38 V54" fill="none" strokeWidth="2" markerEnd="url(#gh-arrow-accent)" className="stroke-accent" />
       <text x="320" y="48" fontSize="12" textAnchor="middle" className="fill-accent-hover font-mono">
         4 · pull request
       </text>
