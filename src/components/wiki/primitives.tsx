@@ -13,6 +13,11 @@ import { Reveal } from "@/components/Reveal";
 /**
  * Building blocks shared by every wiki guide. Everything is drawn from the
  * site's CSS variables, so diagrams re-theme with light/dark like the rest.
+ *
+ * Boxes never use h-full: in a column stacked inside a grid, h-full resolves
+ * to the whole row and pushes the next box out of the grid. Side by side they
+ * still match heights — grid items stretch, and Figure and Callout grow to
+ * fill their Reveal wrapper.
  */
 
 /** A bordered panel with an optional heading row — the frame for diagrams. */
@@ -28,10 +33,10 @@ export function Figure({
   className?: string;
 }) {
   return (
-    <Reveal className="h-full">
+    <Reveal className="flex flex-col">
       <figure
         className={cn(
-          "m-0 h-full rounded-[var(--radius)] border border-border bg-surface p-5 md:p-8",
+          "m-0 grow rounded-[var(--radius)] border border-border bg-surface p-5 md:p-8",
           className,
         )}
       >
@@ -178,10 +183,10 @@ export function Callout({
 }) {
   const Icon = tone === "warn" ? TriangleAlert : Lightbulb;
   return (
-    <Reveal className="h-full">
+    <Reveal className="flex flex-col">
       <aside
         className={cn(
-          "flex h-full gap-4 rounded-[var(--radius)] border p-5",
+          "flex grow gap-4 rounded-[var(--radius)] border p-5",
           tone === "warn"
             ? "border-accent/40 bg-accent-soft"
             : "border-border bg-background-secondary",
@@ -221,7 +226,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "h-full rounded-[var(--radius)] border p-5",
+        "rounded-[var(--radius)] border p-5",
         accent ? "border-accent/45 bg-accent-soft" : "border-border bg-surface",
         className,
       )}
