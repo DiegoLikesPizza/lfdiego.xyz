@@ -43,10 +43,14 @@ export function formatNumber(value: number) {
   return value.toLocaleString("en-US");
 }
 
-/** 7234162400 → "7.2B" — for numbers too big to read digit by digit. */
+/**
+ * 8066523100 → "8.0B" — for numbers too big to read digit by digit. Rounds
+ * down, so a running total never reads higher than it is.
+ */
 export function formatCompact(value: number) {
-  if (value >= 1_000_000_000) return `${(value / 1_000_000_000).toFixed(1)}B`;
-  if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}M`;
+  const down = (scaled: number) => (Math.floor(scaled * 10) / 10).toFixed(1);
+  if (value >= 1_000_000_000) return `${down(value / 1_000_000_000)}B`;
+  if (value >= 1_000_000) return `${down(value / 1_000_000)}M`;
   if (value >= 10_000) return `${Math.round(value / 1000)}K`;
   if (value >= 1_000) return `${(value / 1000).toFixed(1)}K`;
   return formatNumber(value);

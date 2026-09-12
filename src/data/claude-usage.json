@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-09-10T00:00:00.000Z",
+  "generatedAt": "2026-09-12T00:00:00.000Z",
   "totals": {
-    "sessions": 75,
-    "tokens": 7234162400,
-    "input": 162400,
-    "output": 24500000,
-    "cacheRead": 7100000000,
-    "cacheWrite": 109500000,
-    "activeDays": 43,
-    "daysInRange": 61,
+    "sessions": 78,
+    "tokens": 8066523100,
+    "input": 223100,
+    "output": 34000000,
+    "cacheRead": 7900000000,
+    "cacheWrite": 132300000,
+    "activeDays": 45,
+    "daysInRange": 62,
     "longestStreakDays": 17,
-    "currentStreakDays": 2,
+    "currentStreakDays": 4,
     "longestSessionMinutes": 30740,
-    "mostActiveDay": "2026-07-25",
-    "lastUsed": "2026-09-10"
+    "mostActiveDay": "2026-09-11",
+    "lastUsed": "2026-09-11"
   },
   "models": [
     {
