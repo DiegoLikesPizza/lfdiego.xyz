@@ -1,33 +1,33 @@
 {
-  "generatedAt": "2026-09-12T00:00:00.000Z",
+  "generatedAt": "2026-09-17T00:00:00.000Z",
   "totals": {
-    "sessions": 78,
-    "tokens": 8066523100,
-    "input": 223100,
-    "output": 34000000,
-    "cacheRead": 7900000000,
-    "cacheWrite": 132300000,
-    "activeDays": 45,
-    "daysInRange": 62,
+    "sessions": 87,
+    "tokens": 10062229800,
+    "input": 329800,
+    "output": 65600000,
+    "cacheRead": 9800000000,
+    "cacheWrite": 196300000,
+    "activeDays": 50,
+    "daysInRange": 67,
     "longestStreakDays": 17,
-    "currentStreakDays": 4,
+    "currentStreakDays": 9,
     "longestSessionMinutes": 30740,
-    "mostActiveDay": "2026-09-11",
-    "lastUsed": "2026-09-11"
+    "mostActiveDay": "2026-09-16",
+    "lastUsed": "2026-09-17"
   },
   "models": [
     {
       "name": "Opus 5",
-      "share": 77.6,
-      "tokens": 5596421100,
-      "input": 121100,
-      "output": 16900000,
-      "cacheRead": 5500000000,
-      "cacheWrite": 79400000
+      "share": 83.9,
+      "tokens": 8424488500,
+      "input": 288500,
+      "output": 58000000,
+      "cacheRead": 8200000000,
+      "cacheWrite": 166200000
     },
     {
       "name": "Opus 4.8",
-      "share": 22.3,
+      "share": 16.1,
       "tokens": 1637322500,
       "input": 22500,
       "output": 7600000,
