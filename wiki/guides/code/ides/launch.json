@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug server",
+      "program": "${workspaceFolder}/src/server.js",
+      "env": { "NODE_ENV": "development" }
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach to node --inspect",
+      "port": 9229
+    },
+    {
+      "type": "java",
+      "request": "attach",
+      "name": "Attach to JVM on 5005",
+      "hostName": "localhost",
+      "port": 5005
+    }
+  ]
+}
