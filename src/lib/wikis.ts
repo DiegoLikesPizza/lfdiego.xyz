@@ -32,7 +32,7 @@ export const wikis: Wiki[] = [
     kicker: "Seven guides",
     summary:
       "Git, GitHub, Java, JavaScript, Kotlin, IDEs and AI prompting — from the mental model to the details, with diagrams and examples that were actually run.",
-    pages: 0,
+    pages: 201,
     icon: BookOpen,
   },
   {

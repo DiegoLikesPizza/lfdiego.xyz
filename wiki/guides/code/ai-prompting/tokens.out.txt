@@ -1,0 +1,8 @@
+39 chars -> 9 tokens: ['Un', 'bel', 'ievably', ',', ' token', 'ization', " isn't", ' magic', '.']
+11 chars -> 2 tokens: ['Hello', ' world']
+28 chars -> 8 tokens: ['Hallo', ' Welt', ',', ' wie', ' geht', ' es', ' dir', '?']
+63 chars -> 16 tokens: ['R', 'ind', 'fle', 'ische', 'tik', 'ett', 'ierungs', 'über', 'wach', 'ungs', 'auf', 'gaben', 'über', 'tragung', 'sges', 'etz']
+57 chars -> 19 tokens: ['const', ' total', ' =', ' items', '.reduce', '((', 'sum', ',', ' i', ')', ' =>', ' sum', ' +', ' i', '.price', ',', ' ', '0', ');']
+10 chars -> 4 tokens: ['123', '456', '789', '0']
+13 chars -> 4 tokens: ['   ', ' return', ' x', ';']
+2 chars -> 2 tokens: ['🙂', '👍']
