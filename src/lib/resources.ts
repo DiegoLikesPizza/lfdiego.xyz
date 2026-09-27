@@ -17,7 +17,7 @@ export type Resource = {
 export const resources: Resource[] = [
   {
     label: "Wiki",
-    description: "Visual guides to Git, Java, Kotlin, IDEs and AI prompting",
+    description: "Developer guides, plus Java 27 and Kotlin wikis",
     href: "/wiki",
     icon: BookOpen,
   },

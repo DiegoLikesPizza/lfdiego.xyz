@@ -1,0 +1,23 @@
+# One Diego's Wiki Engine instance per wiki: wiki@guides, wiki@java27, wiki@kotlin.
+# Installed by deploy/wiki/deploy.sh; per-instance settings live in /etc/wiki/<name>.env.
+[Unit]
+Description=Diego's Wiki Engine (%i)
+After=network.target
+
+[Service]
+User=wiki
+Group=wiki
+EnvironmentFile=/etc/wiki/%i.env
+# Re-imports the Markdown on every start: unchanged pages are skipped, changed ones get a new revision.
+ExecStart=/usr/bin/java -Xmx192m -XX:+UseSerialGC -jar /opt/wiki/wiki.jar --host 127.0.0.1 --data /var/lib/wiki/%i --import ${WIKI_IMPORT}
+Restart=on-failure
+RestartSec=5
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/wiki/%i
+
+[Install]
+WantedBy=multi-user.target
