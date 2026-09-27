@@ -16,7 +16,8 @@ RestartSec=5
 NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
-ProtectHome=true
+# read-only (not true): the site checkout with wiki/guides may live below /home or /root.
+ProtectHome=read-only
 ReadWritePaths=/var/lib/wiki/%i
 
 [Install]
