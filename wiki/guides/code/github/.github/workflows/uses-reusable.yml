@@ -1,0 +1,11 @@
+name: Test (calls the reusable workflow)
+on: [pull_request]
+
+jobs:
+  node-20:
+    uses: ./.github/workflows/reusable-test.yml
+    with:
+      node-version: "20"
+  node-22:
+    uses: ./.github/workflows/reusable-test.yml
+    secrets: inherit
