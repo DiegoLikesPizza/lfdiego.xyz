@@ -42,7 +42,9 @@ export function ModelSplit() {
                 {model.name}
               </span>
               <span className="whitespace-nowrap font-mono text-xs text-foreground-muted">
-                {formatCompact(model.tokens)} · {model.share}%
+                {formatCompact(model.tokens)} ·{" "}
+                {/* A model that rounds to 0.0% still did work — say so. */}
+                {model.share < 0.1 ? "<0.1" : model.share}%
               </span>
             </div>
             <p className="mt-2 font-mono text-[0.7rem] leading-relaxed text-foreground-subtle">
