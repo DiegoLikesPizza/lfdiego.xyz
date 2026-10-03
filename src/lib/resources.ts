@@ -1,5 +1,13 @@
 import type { LucideIcon } from "lucide-react";
-import { BookOpen, ChartColumn, Clock, FileText, Timer } from "lucide-react";
+import {
+  BookOpen,
+  ChartColumn,
+  Clock,
+  FileText,
+  LayoutTemplate,
+  Network,
+  Timer,
+} from "lucide-react";
 
 export type Resource = {
   label: string;
@@ -7,8 +15,9 @@ export type Resource = {
   href: string;
   icon: LucideIcon;
   /**
-   * Served by nginx next to this app rather than by Next.js, so it needs a
-   * plain <a> (a full page load) — a client-side <Link> would 404.
+   * Served by nginx next to this app (or on another subdomain) rather than by
+   * Next.js, so it needs a plain <a> (a full page load) — a client-side <Link>
+   * would 404.
    */
   outsideApp?: boolean;
 };
@@ -26,6 +35,20 @@ export const resources: Resource[] = [
     description: "How much I use Claude, by the numbers",
     href: "/claude",
     icon: ChartColumn,
+  },
+  {
+    label: "OOP Planning",
+    description: "Plan Java classes visually, then track building them",
+    href: "/oop-planning/",
+    icon: Network,
+    outsideApp: true,
+  },
+  {
+    label: "Make Your Portfolio",
+    description: "Build a one-page portfolio and publish it",
+    href: "https://make-your-portfolio.lfdiego.xyz",
+    icon: LayoutTemplate,
+    outsideApp: true,
   },
   {
     label: "Clock",
