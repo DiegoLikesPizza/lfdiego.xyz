@@ -37,9 +37,9 @@ export const resources: Resource[] = [
     icon: ChartColumn,
   },
   {
-    label: "OOP Planning",
-    description: "Plan Java classes visually, then track building them",
-    href: "/oop-planning/",
+    label: "Hub",
+    description: "OOP Planning, Notenübersicht and more (invite only)",
+    href: "/hub/",
     icon: Network,
     outsideApp: true,
   },
