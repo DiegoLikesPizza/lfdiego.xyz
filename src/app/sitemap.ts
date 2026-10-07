@@ -23,6 +23,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    ...["impressum", "datenschutz"].map((page) => ({
+      url: `https://lfdiego.xyz/${page}/`,
+      lastModified: new Date(),
+      changeFrequency: "yearly" as const,
+      priority: 0.2,
+    })),
     // Start pages of the engine-hosted wikis; the engine links everything else.
     ...wikis.map((wiki) => ({
       url: `https://lfdiego.xyz${wiki.path}/wiki/home`,

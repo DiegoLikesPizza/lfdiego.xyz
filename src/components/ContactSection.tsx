@@ -1,7 +1,6 @@
 import { Mail, Github, Linkedin, ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { SectionIndex } from "@/components/SectionIndex";
-import { Logo } from "@/components/Logo";
 
 const channels = [
   {
@@ -86,28 +85,6 @@ export function ContactSection() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-border">
-        <div className="mx-auto flex max-w-[1100px] flex-col items-center justify-between gap-5 px-6 py-10 md:flex-row md:px-10">
-          <div className="flex items-center gap-3">
-            <Logo size="sm" />
-            <p className="font-mono text-xs text-foreground-muted">
-              © 2026 Diego Göttler
-            </p>
-          </div>
-          <div className="flex items-center gap-6">
-            <p className="font-mono text-xs text-foreground-subtle">
-              Built with Next.js + Tailwind
-            </p>
-            <a
-              href="#top"
-              className="link-wipe font-mono text-xs text-foreground-muted transition-colors hover:text-foreground"
-            >
-              Back to top ↑
-            </a>
-          </div>
-        </div>
-      </footer>
     </>
   );
 }

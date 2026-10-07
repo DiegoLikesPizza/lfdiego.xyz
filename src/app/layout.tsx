@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 
 const inter = Inter({
@@ -101,6 +102,7 @@ export default function RootLayout({
         />
         <SiteHeader />
         {children}
+        <SiteFooter />
       </body>
     </html>
   );
