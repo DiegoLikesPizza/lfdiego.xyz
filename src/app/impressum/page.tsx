@@ -35,7 +35,7 @@ export default function ImpressumPage() {
 
       <H2>Geltungsbereich</H2>
       <p>
-        Dieses Impressum gilt für lfdiego.xyz mit allen Unterseiten, darunter die Wikis unter /wiki/, der lfd hub unter /hub/ und die
+        Dieses Impressum gilt für lfdiego.xyz mit allen Unterseiten, darunter der lfd hub unter /hub/ und die
         zugehörige Android-App, sowie für die Subdomains von lfdiego.xyz, soweit dort nichts anderes angegeben ist.
       </p>
 

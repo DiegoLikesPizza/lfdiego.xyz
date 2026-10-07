@@ -12,8 +12,6 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
-    // Wiki example code (compiled and run on its own, some of it wrong on purpose).
-    "wiki/**",
   ]),
 ]);
 

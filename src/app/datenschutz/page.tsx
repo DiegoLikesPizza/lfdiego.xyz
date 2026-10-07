@@ -5,7 +5,7 @@ import { LEGAL_UPDATED, OPERATOR } from "@/lib/legal";
 
 export const metadata: Metadata = {
   title: "Datenschutzerklärung — Diego Göttler",
-  description: "Wie lfdiego.xyz, die Wikis, der lfd hub und die lfd-hub-App mit personenbezogenen Daten umgehen.",
+  description: "Wie lfdiego.xyz, der lfd hub und die lfd-hub-App mit personenbezogenen Daten umgehen.",
   alternates: { canonical: "/datenschutz/" },
 };
 
@@ -14,7 +14,7 @@ export default function DatenschutzPage() {
     <LegalPage title="Datenschutzerklärung">
       <p>
         Diese Erklärung beschreibt, welche personenbezogenen Daten beim Besuch von <strong>lfdiego.xyz</strong> verarbeitet werden. Sie gilt
-        für die Website mit allen Unterseiten, die Wikis unter /wiki/, den <strong>lfd hub</strong> unter /hub/ und die dazugehörige
+        für die Website mit allen Unterseiten, den <strong>lfd hub</strong> unter /hub/ und die dazugehörige
         Android-App. Ich setze keine Analyse- oder Werbe-Tracker ein und verkaufe keine Daten.
       </p>
 
@@ -91,13 +91,7 @@ export default function DatenschutzPage() {
         werden und keine gesetzlichen Aufbewahrungspflichten bestehen.
       </p>
 
-      <H2>7. Wikis</H2>
-      <p>
-        Die Wikis unter /wiki/ sind ohne Anmeldung lesbar. Beim Lesen werden nur die unter Nr. 3 und 4 genannten Daten verarbeitet. Die
-        Suche läuft auf meinem Server; Suchbegriffe werden nicht gespeichert oder ausgewertet. Ein Login gibt es nur für mich als Betreiber.
-      </p>
-
-      <H2>8. lfd hub (Nutzerkonten)</H2>
+      <H2>7. lfd hub (Nutzerkonten)</H2>
       <p>
         Der lfd hub unter /hub/ ist ein privater Bereich für eingeladene Personen. Ein Konto lässt sich nur über einen persönlichen
         Einladungslink anlegen.
@@ -119,7 +113,7 @@ export default function DatenschutzPage() {
         </li>
         <li>
           <strong>Benachrichtigungen:</strong> die Einträge in Ihrer Benachrichtigungsliste, welche Arten Sie stummgeschaltet haben, und
-          (wenn Sie Push erlauben) die Push-Adresse Ihres Browsers bzw. Geräts (siehe Nr. 9).
+          (wenn Sie Push erlauben) die Push-Adresse Ihres Browsers bzw. Geräts (siehe Nr. 8).
         </li>
         <li>Technisch: Zeitpunkte von Änderungen und, bei Spielen, wann Sie eine Partie zuletzt geöffnet haben.</li>
       </ul>
@@ -139,7 +133,7 @@ export default function DatenschutzPage() {
       </p>
       <p>Der Browser speichert außerdem kleine Einstellungen (z. B. Filter, Design, Steuerung in Spielen) lokal im localStorage.</p>
 
-      <H2>9. Push-Benachrichtigungen</H2>
+      <H2>8. Push-Benachrichtigungen</H2>
       <p>
         Auf Wunsch benachrichtigt der Hub Sie, wenn Sie in einem Spiel am Zug sind, eingeladen werden oder ein Termin feststeht. Push wird
         nur aktiviert, wenn Sie es ausdrücklich erlauben (Browser- bzw. Android-Abfrage); Rechtsgrundlage ist Ihre Einwilligung (Art. 6
@@ -161,15 +155,15 @@ export default function DatenschutzPage() {
       </ul>
       <p>Beim Abmelden wird die Push-Adresse des Geräts gelöscht.</p>
 
-      <H2>10. Android-App „lfd hub“</H2>
+      <H2>9. Android-App „lfd hub“</H2>
       <p>
         Die App wird direkt von meinem Server heruntergeladen (nicht über einen App-Store) und fragt dort regelmäßig nach Updates. Sie
         speichert Ihre Anmeldung sowie eine Offline-Kopie Ihrer Noten und Erinnerungen auf dem Gerät; beim Abmelden wird diese Kopie gelöscht.
         Die tägliche Erinnerung wird lokal auf dem Telefon geplant. Die App enthält keine Tracking- oder Werbe-Bibliotheken. Für Push gilt Nr.
-        9.
+        8.
       </p>
 
-      <H2>11. Ihre Rechte</H2>
+      <H2>10. Ihre Rechte</H2>
       <p>Sie haben jederzeit das Recht auf</p>
       <ul>
         <li>Auskunft über Ihre gespeicherten Daten (Art. 15 DSGVO),</li>
@@ -190,13 +184,13 @@ export default function DatenschutzPage() {
         .
       </p>
 
-      <H2>12. Sicherheit</H2>
+      <H2>11. Sicherheit</H2>
       <p>
         Alle Verbindungen sind per TLS (HTTPS) verschlüsselt. Es findet keine automatisierte Entscheidungsfindung oder Profilbildung im
         Sinne von Art. 22 DSGVO statt.
       </p>
 
-      <H2>13. Änderungen</H2>
+      <H2>12. Änderungen</H2>
       <p>
         Wenn sich die Website oder die Rechtslage ändert, passe ich diese Erklärung an. Es gilt die jeweils hier veröffentlichte Fassung.
       </p>

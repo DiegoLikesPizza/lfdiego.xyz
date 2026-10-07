@@ -1,9 +1,0 @@
-### Create a todo
-POST http://localhost:8080/api/todos
-Content-Type: application/json
-
-{ "title": "Buy milk" }
-
-### List todos
-GET http://localhost:8080/api/todos
-Accept: application/json

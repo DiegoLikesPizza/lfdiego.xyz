@@ -1,6 +1,0 @@
-build/
-.gradle/
-target/
-node_modules/
-*.class
-.kotlin/

@@ -10,7 +10,7 @@ import { ResourcesMenu } from "@/components/ResourcesMenu";
 import { MobileMenu } from "@/components/MobileMenu";
 
 // Absolute hrefs so the section links also work from a subpage. Standalone
-// pages (wiki, Claude stats, the apps) live in the Resources menu instead.
+// pages (Claude stats, the hub, the apps) live in the Resources menu instead.
 const links = [
   { id: "about", label: "About", href: "/#about" },
   { id: "work", label: "Work", href: "/#work" },

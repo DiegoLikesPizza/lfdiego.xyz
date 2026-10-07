@@ -1,6 +1,5 @@
 import type { LucideIcon } from "lucide-react";
 import {
-  BookOpen,
   ChartColumn,
   Clock,
   FileText,
@@ -24,12 +23,6 @@ export type Resource = {
 
 /** Everything listed under “Resources” in the header, desktop and mobile. */
 export const resources: Resource[] = [
-  {
-    label: "Wiki",
-    description: "Developer guides, plus Java 27 and Kotlin wikis",
-    href: "/wiki",
-    icon: BookOpen,
-  },
   {
     label: "Claude stats",
     description: "How much I use Claude, by the numbers",
